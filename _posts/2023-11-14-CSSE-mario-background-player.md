@@ -107,5 +107,4 @@ images:
 
     // Start the game
     gameLoop();
-
 </script>
