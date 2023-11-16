@@ -120,7 +120,7 @@ images:
     let canvas = document.getElementById('canvas');
     let c = canvas.getContext('2d');
     // Set the canvas dimensions
-    canvas.width = 1300;
+    canvas.width = 1150;
     canvas.height = 600;
     // Define gravity value
     let gravity = 1.5;
