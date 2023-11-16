@@ -120,8 +120,8 @@ images:
     let canvas = document.getElementById('canvas');
     let c = canvas.getContext('2d');
     // Set the canvas dimensions
-    canvas.width = 650;
-    canvas.height = 400;
+    canvas.width = 900;
+    canvas.height = 600;
     // Define gravity value
     let gravity = 1.5;
     // Define the Player class
