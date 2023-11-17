@@ -93,5 +93,4 @@ images:
 
     // start game
     await GameManager.startGame( levels[0] );
-
 </script>
