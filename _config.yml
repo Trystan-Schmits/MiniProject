@@ -1,16 +1,16 @@
-title: Teacher 2.0
-description: "August 2023 to June 2024"
-owner_name: John Mortensen
-github_username: jm1021
-github_repo: "teacher_portfolio"
+title: Student 2.0
+description: "November 2023 to March 2024"
+owner_name: Trystan Schmits
+github_username: Trystan-Schmits
+github_repo: "MiniProject"
 baseurl: "/MiniProject"
 future: true
 remote_theme: jekyll/minima
 minima:
   social_links:
-    - { platform: github, user_url: "https://github.com/nighthawkcoders/teacher_portfolio"}
+    - { platform: github, user_url: "https://github.com/Trystan-Schmits/MiniProject"}
     - { platform: x, user_url: "https://x.com/NighthawkCoding/" }
-    - { platform: youtube, user_url: "https://www.youtube.com/@nighthawkcodingsociety2868" }      
+    - { platform: youtube, user_url: "https://www.youtube.com/@ytr-ql4un" }      
 # remote_theme: pages-themes/dinky@v0.2.0
 # remote_theme: pages-themes/minimal@v0.2.0
 # remote_theme: pages-themes/hacker@v0.2.0
