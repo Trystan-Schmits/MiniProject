@@ -47,11 +47,11 @@ image: /images/platformer/backgrounds/hills.png
         tube: { src: "/images/platformer/obstacles/tube.png" },
       },
       platforms: {
-        grass: { src: "/images/platformer/platforms/Custom_Platform.png"},
+        grass: { src: "/images/platformer/platforms/pigfarm.png"},
         alien: { src: "/images/platformer/platforms/alien.png" }
       },
       backgrounds: {
-        start: { src: "/images/platformer/backgrounds/home.png" },
+        start: { src: "/images/platformer/backgrounds/Joke.jpg" },
         hills: { src: "/images/platformer/backgrounds/GD_Background.png" },
         planet: { src: "/images/platformer/backgrounds/planet.jpg" },
         castles: { src: "/images/platformer/backgrounds/castles.png" },
