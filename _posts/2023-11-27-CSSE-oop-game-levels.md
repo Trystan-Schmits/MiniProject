@@ -8,11 +8,27 @@ image: /images/platformer/backgrounds/hills.png
 ---
 
 <style>
-    #gameBegin, #controls, #gameOver {
-        position: relative;
+    #gameBegin, #controls, #gameOver, #navigation {
+      position: relative;
         z-index: 2; /*Ensure the controls are on top*/
     }
+    .sidenav {
+      position: fixed;
+      height: 100%; /* 100% Full-height */
+      width: 40px; /* 0 width - change this with JavaScript */
+      z-index: 3; /* Stay on top */
+      top: 0; /* Stay at the top */
+      left: 0;
+      overflow-x: hidden; /* Disable horizontal scroll */
+      padding-top: 60px; /* Place content 60px from the top */
+      transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+      background-color: black;
+    }
 </style>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" id="toggleNavigationBar1" class="closebtn" onclick="closeNav()">&times;</a>
+</div>
 
 <!-- Prepare DOM elements -->
 <!-- Wrap both the canvas and controls in a container div -->
@@ -24,11 +40,16 @@ image: /images/platformer/backgrounds/hills.png
         <!-- Background controls -->
         <button id="toggleCanvasEffect">Invert</button>
     </div>
+    <div id="navigation"> <!-- Controls -->
+        <!-- Background controls -->
+        <button id="toggleNavigationBar">Navigation</button>
+    </div>
     <div id="gameOver" hidden>
         <button id="restartGame">Restart</button>
     </div>
 </div>
 
+<!-- regular game -->
 <script type="module">
     // Imports
     import GameEnv from '{{site.baseurl}}/assets/js/platformer/GameEnv.js';
@@ -180,4 +201,15 @@ image: /images/platformer/backgrounds/hills.png
     // start game
     GameControl.gameLoop();
 
+</script>
+
+<!-- navigation -->
+<script type="module">
+    var toggle = false;
+    function toggleWidth(){
+        toggle = !toggle;
+        document.getElementById("mySidenav").style.width = toggle?"250px":"0px";
+    }
+    document.getElementById("toggleNavigationBar").addEventListener("click",toggleWidth);
+    document.getElementById("toggleNavigationBar1").addEventListener("click",toggleWidth);
 </script>
