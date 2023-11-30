@@ -1,4 +1,4 @@
-title: Student 2.0
+title: Mario Modifying Adventures!
 description: "November 2023 to March 2024"
 owner_name: Trystan Schmits
 github_username: Trystan-Schmits
@@ -21,5 +21,3 @@ plugins:
 header_pages:
   - navigation/blog.md
   - navigation/search.html
-
-
