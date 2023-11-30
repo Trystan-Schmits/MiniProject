@@ -41,25 +41,9 @@ introduction_tools: &introduction_tools |
     +-----------------+
 
 # CSSE course meta data
-Sprint1:
-  title: Tools and Software Development Processes
-  description: By the end of Weeks 0-3, students will have gained practical experience in blogging, coding with Jupyter Notebooks, and GitHub Pages; learning will begin with Linux, Markdown, HTML, and JavaScript. Students will establish foundation using essential tools and software development processes to support their coding journey.
-  illustration: *introduction_tools
-  start: 0
-  end: 3
-Sprint2:
-  title: Introduction to Development with JavaScript
-  description: A key focus of this course is to make Web Games using JavaScript. These next few weeks we will perform the aspects of learning java and learning an animation and deploying the game to GitHub Pages.
-  start: 4
-  end: 6
-Sprint3:
-  title:  Building a Web Application with GitHub Pages for N@tM
-  description: Part of the process of becoming technically proficient is taking on challenges while coding, these challenges will often make a student feel uncomforatable.   But with some vision, questions, and AI research it is amazing what can be done.  Our goal is to participate in N@tM with the other CS classes and other classes from the Electives Department.
-  start: 7
-  end: 12
 Sprint4:
   title: OOP Programming Fundamentals
-  description: Students, in pairs, will work on converting Mario game to OOP.  There will be a series of Tech Talks to support this activity.
+  description: Students, in triads, will work on converting Mario game to OOP.  There will be a series of Tech Talks to support this activity.
   start: 13
   end: 15
 Sprint5:
