@@ -15,7 +15,7 @@ image: /images/platformer/backgrounds/hills.png
     .sidenav {
       position: fixed;
       height: 100%; /* 100% Full-height */
-      width: 40px; /* 0 width - change this with JavaScript */
+      width: 0px; /* 0 width - change this with JavaScript */
       z-index: 3; /* Stay on top */
       top: 0; /* Stay at the top */
       left: 0;
@@ -28,6 +28,12 @@ image: /images/platformer/backgrounds/hills.png
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" id="toggleNavigationBar1" class="closebtn" onclick="closeNav()">&times;</a>
+  <table>
+    <tr id="navigationPlaceAfter">
+      <th>Level</th>
+      <th>Character</th>
+    </tr>
+  </table>
 </div>
 
 <!-- Prepare DOM elements -->
@@ -205,11 +211,76 @@ image: /images/platformer/backgrounds/hills.png
 
 <!-- navigation -->
 <script type="module">
-    var toggle = false;
-    function toggleWidth(){
-        toggle = !toggle;
-        document.getElementById("mySidenav").style.width = toggle?"250px":"0px";
+  //sidebar
+  var toggle = false;
+  function toggleWidth(){
+    toggle = !toggle;
+    document.getElementById("mySidenav").style.width = toggle?"250px":"0px";
+  }
+  document.getElementById("toggleNavigationBar").addEventListener("click",toggleWidth);
+  document.getElementById("toggleNavigationBar1").addEventListener("click",toggleWidth);
+  //generate table
+  import GameEnv from '{{site.baseurl}}/assets/js/platformer/GameEnv.js';
+  import GameLevel from '{{site.baseurl}}/assets/js/platformer/GameLevel.js';
+  import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
+  var levels = GameEnv.levels;
+  var assets = {
+    obstacles: {
+      tube: { src: "/images/platformer/obstacles/tube.png" },
+    },
+    platforms: {
+      grass: { src: "/images/platformer/platforms/pigfarm.png"},
+      alien: { src: "/images/platformer/platforms/alien.png" }
+    },
+    backgrounds: {
+      start: { src: "/images/platformer/backgrounds/Joke.jpg" },
+      hills: { src: "/images/platformer/backgrounds/GD_Background.png" },
+      planet: { src: "/images/platformer/backgrounds/planet.jpg" },
+      castles: { src: "/images/platformer/backgrounds/castles.png" },
+      end: { src: "/images/platformer/backgrounds/game_over.png" }
+    },
+    players: {
+      mario: {
+        src: "/images/platformer/sprites/mario.png",
+        width: 256,
+        height: 256,
+        w: { row: 10, frames: 15 },
+        wa: { row: 11, frames: 15 },
+        wd: { row: 10, frames: 15 },
+        a: { row: 3, frames: 7, idleFrame: { column: 7, frames: 0 } },
+        s: { row: null, frames: null},
+        d: { row: 2, frames: 7, idleFrame: { column: 7, frames: 0 } }
+      },
+      monkey: {
+        src: "/images/platformer/sprites/monkey.png",
+        width: 40,
+        height: 40,
+        w: { row: 9, frames: 15 },
+        wa: { row: 9, frames: 15 },
+        wd: { row: 9, frames: 15 },
+        a: { row: 1, frames: 15, idleFrame: { column: 7, frames: 0 } },
+        s: { row: 12, frames: 15 },
+        d: { row: 0, frames: 15, idleFrame: { column: 7, frames: 0 } }
+      }
     }
-    document.getElementById("toggleNavigationBar").addEventListener("click",toggleWidth);
-    document.getElementById("toggleNavigationBar1").addEventListener("click",toggleWidth);
+  };
+
+    var placeAfterElement = document.getElementById("navigationPlaceAfter");
+
+    for(let i=levels.length-1;i>-1;i-=1){
+      var row = document.createElement("tr");
+      var c1 = document.createElement("td");
+      var c2 = document.createElement("td");
+      c1.innerText = levels[i].tag;
+      if(levels[i].playerData){ //if player exists
+        var array = levels[i].playerData.src.split("/");
+        c2.innerText = array[array.length-1];
+      }
+      else{
+        c2.innerText = "none";
+      }
+      row.append(c1);
+      row.append(c2);
+      placeAfterElement.insertAdjacentElement("afterend",row);
+    }
 </script>
