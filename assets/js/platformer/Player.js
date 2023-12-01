@@ -108,7 +108,7 @@ export class Player extends Character{
             if (this.movement.right) this.x += this.speed;  // Move to right
         }
         if (this.isGravityAnimation("w")) {
-            if (this.movement.down) this.y -= (this.bottom * .33);  // jump 33% higher than bottom
+            if (this.movement.down) this.y -= (this.bottom * .11);  // jump 11% higher than bottom
         } 
 
         // Perform super update actions
