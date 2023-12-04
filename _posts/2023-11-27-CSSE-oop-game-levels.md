@@ -272,9 +272,12 @@ image: /images/platformer/backgrounds/hills.png
       var c1 = document.createElement("td");
       var c2 = document.createElement("td");
       c1.innerText = levels[i].tag;
-      if(levels[i].playerData){ //if player exists
-        var array = levels[i].playerData.src.split("/");
-        c2.innerText = array[array.length-1];
+      if(levels[i].playerData.src){ //if player exists
+          var charImage = new Image();
+          charImage.src = levels[i].playerData.src;
+//        /var array = levels[i].playerData.src.split("/");
+//        c2.innerText = array[array.length-1];
+          c2.append(charImage);
       }
       else{
         c2.innerText = "none";
