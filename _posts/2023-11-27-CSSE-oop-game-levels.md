@@ -223,6 +223,7 @@ image: /images/platformer/backgrounds/hills.png
   import GameEnv from '{{site.baseurl}}/assets/js/platformer/GameEnv.js';
   import GameLevel from '{{site.baseurl}}/assets/js/platformer/GameLevel.js';
   import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
+  
   var levels = GameEnv.levels;
   var assets = {
     obstacles: {
@@ -275,7 +276,7 @@ image: /images/platformer/backgrounds/hills.png
       if(levels[i].playerData){ //if player exists
           var charImage = new Image();
           charImage.src = levels[i].playerData.src;
-//        /var array = levels[i].playerData.src.split("/");
+//        var array = levels[i].playerData.src.split("/");
 //        c2.innerText = array[array.length-1];
           c2.append(charImage);
       }
