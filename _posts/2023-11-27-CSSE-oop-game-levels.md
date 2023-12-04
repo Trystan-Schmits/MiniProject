@@ -275,7 +275,7 @@ image: /images/platformer/backgrounds/hills.png
       c1.innerText = levels[i].tag;
       if(levels[i].playerData){ //if player exists
           var charImage = new Image();
-          charImage.src = "{{site.baseurl}}/"+levels[i].playerData.src;
+          charImage.src = "{{site.baseurl}}/"levels[i].playerData.src;
 //        var array = levels[i].playerData.src.split("/");
 //        c2.innerText = array[array.length-1];
           c2.append(charImage);
