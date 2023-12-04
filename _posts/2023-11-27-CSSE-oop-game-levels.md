@@ -27,7 +27,7 @@ image: /images/platformer/backgrounds/hills.png
 </style>
 
 <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" id="toggleNavigationBar1" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="javascript:void(0)" id="toggleNavigationBar1" class="closebtn">&times;</a>
   <table>
     <tr id="navigationPlaceAfter">
       <th>Level</th>
@@ -272,7 +272,7 @@ image: /images/platformer/backgrounds/hills.png
       var c1 = document.createElement("td");
       var c2 = document.createElement("td");
       c1.innerText = levels[i].tag;
-      if(levels[i].playerData.src){ //if player exists
+      if(levels[i].playerData){ //if player exists
           var charImage = new Image();
           charImage.src = levels[i].playerData.src;
 //        /var array = levels[i].playerData.src.split("/");
