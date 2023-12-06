@@ -232,48 +232,7 @@ image: /images/platformer/backgrounds/hills.png
   import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
   
   var levels = GameEnv.levels;
-
-  var assets = {
-    obstacles: {
-      tube: { src: "/images/platformer/obstacles/tube.png" },
-    },
-    platforms: {
-      grass: { src: "/images/platformer/platforms/pigfarm.png"},
-      alien: { src: "/images/platformer/platforms/alien.png" }
-    },
-    backgrounds: {
-      start: { src: "/images/platformer/backgrounds/Joke.jpg" },
-      hills: { src: "/images/platformer/backgrounds/GD_Background.png" },
-      planet: { src: "/images/platformer/backgrounds/planet.jpg" },
-      castles: { src: "/images/platformer/backgrounds/castles.png" },
-      end: { src: "/images/platformer/backgrounds/game_over.png" }
-    },
-    players: {
-      mario: {
-        src: "/images/platformer/sprites/mario.png",
-        width: 256,
-        height: 256,
-        w: { row: 10, frames: 15 },
-        wa: { row: 11, frames: 15 },
-        wd: { row: 10, frames: 15 },
-        a: { row: 3, frames: 7, idleFrame: { column: 7, frames: 0 } },
-        s: { row: null, frames: null},
-        d: { row: 2, frames: 7, idleFrame: { column: 7, frames: 0 } }
-      },
-      monkey: {
-        src: "/images/platformer/sprites/monkey.png",
-        width: 40,
-        height: 40,
-        w: { row: 9, frames: 15 },
-        wa: { row: 9, frames: 15 },
-        wd: { row: 9, frames: 15 },
-        a: { row: 1, frames: 15, idleFrame: { column: 7, frames: 0 } },
-        s: { row: 12, frames: 15 },
-        d: { row: 0, frames: 15, idleFrame: { column: 7, frames: 0 } }
-      }
-    }
-  };
-
+  
     var placeAfterElement = document.getElementById("navigationPlaceAfter");
 
     for(let i=levels.length-1;i>-1;i-=1){
