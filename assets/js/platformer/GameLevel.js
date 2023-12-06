@@ -3,6 +3,7 @@ import Background from './Background.js';
 import Platform from './Platform.js';
 import Player from './Player.js';
 import Tube from './Tube.js';
+import Goomba from './Goomba.js'
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
@@ -13,6 +14,8 @@ class GameLevel {
         this.platformImg = gameObject.platform?.file;
         this.playerImg = gameObject.player?.file;
         this.playerData = gameObject?.player;
+        this.enemyImg = gameObject.enemy?.file;
+        this.enemyData = gameObject?.enemy;
         this.tubeImg = gameObject.tube?.file;
         this.isComplete = gameObject?.callback; // function that determines if level is complete
         GameEnv.levels.push(this);
@@ -68,6 +71,16 @@ class GameLevel {
                 document.querySelector("#canvasContainer").appendChild(playerCanvas);
                 const playerSpeedRatio = 0.7;
                 new Player(playerCanvas, loadedImages[i], playerSpeedRatio, this.playerData);
+                i++;
+            }
+
+            // Prepare HTML with Enenemy Canvas (if enemyImg is defined)
+            if (this.enemyImg) {
+                const enemyCanvas = document.createElement("canvas");
+                enemyCanvas.id = "enemy";
+                document.querySelector("#canvasContainer").appendChild(enenmyCanvas);
+                const enemySpeedRatio = 0.7;
+                new Goomba(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
                 i++;
             }
 

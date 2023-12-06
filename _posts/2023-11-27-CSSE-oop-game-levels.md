@@ -106,8 +106,15 @@ image: /images/platformer/backgrounds/hills.png
           a: { row: 1, frames: 15, idleFrame: { column: 7, frames: 0 } },
           s: { row: 12, frames: 15 },
           d: { row: 0, frames: 15, idleFrame: { column: 7, frames: 0 } }
+        },
+      },
+      enemies: {
+        goomba: {
+          src: "/images/platformer/sprites/goomba.png",
+          width: 448,
+          height: 452,
         }
-      }
+      },
     };
 
     // add File to assets, ensure valid site.baseurl
@@ -191,7 +198,7 @@ image: /images/platformer/backgrounds/hills.png
     new GameLevel( {tag: "home", background: assets.backgrounds.start, callback: homeScreenCallback } );
     // Game screens
     new GameLevel( {tag: "hills", background: assets.backgrounds.hills, platform: assets.platforms.grass, player: assets.players.mario, tube: assets.obstacles.tube, callback: testerCallBack } );
-    new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, callback: testerCallBack } );
+    new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, enemy: assets.enemies.goomba, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );
 
@@ -225,6 +232,7 @@ image: /images/platformer/backgrounds/hills.png
   import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
   
   var levels = GameEnv.levels;
+
   var assets = {
     obstacles: {
       tube: { src: "/images/platformer/obstacles/tube.png" },
@@ -275,7 +283,7 @@ image: /images/platformer/backgrounds/hills.png
       c1.innerText = levels[i].tag;
       if(levels[i].playerData){ //if player exists
           var charImage = new Image();
-          charImage.src = "{{site.baseurl}}/"levels[i].playerData.src;
+          charImage.src = "{{site.baseurl}}/"+levels[i].playerData.src;
 //        var array = levels[i].playerData.src.split("/");
 //        c2.innerText = array[array.length-1];
           c2.append(charImage);

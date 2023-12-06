@@ -11,6 +11,10 @@ type: collab
 - How do we use LocalStorage: We can use local storage using a player and local selection.
 - Why is LocalStorage important: To prevent the loss of data storage, even when a tab or window is closed.
 
+
+# Local Storage:
+
+
 <div>
 <table>
     <tr id="pasteAfter">
@@ -40,9 +44,11 @@ var key = "myKeyValue";
 
 var rows=[];
 function addRow(v1,v2){
-    var current = count.toFixed(0);
+    var current = count.toFixed(0); //copy the current count for the current row
     rows.push([]);
-	var row = document.createElement("tr");
+
+	  var row = document.createElement("tr"); //create a row
+
     var td1 = document.createElement("td");
     td1.innerText = String(count);
     row.append(td1);
@@ -52,21 +58,20 @@ function addRow(v1,v2){
     input1.type = "text";
     input1.value = v1?v1:"";
     rows[count].push(input1.value);
-    input1.addEventListener("focusout",()=>{rows[current][0]=input1.value});
+    input1.addEventListener("focusout",()=>{rows[current][0]=input1.value}); //listen for updates to inputfeild
     td2.append(input1);
     row.append(td2);
-    
     
     var td3 = document.createElement("td");
     var input2 = document.createElement("input");
     input2.type = "number";
     input2.value = v2?v2:0;
     rows[count].push(input2.value);
-    input2.addEventListener("focusout",()=>{rows[current][1]=input2.value});
+    input2.addEventListener("focusout",()=>{rows[current][1]=input2.value});//listen for updates to inputfeild
     td3.append(input2);
     row.append(td3);
     
-    pasteAfter.insertAdjacentElement("afterend",row);
+    pasteAfter.insertAdjacentElement("afterend",row); //paste row into table
 
     count += 1; //increment count
 }
@@ -108,8 +113,6 @@ if (storageAvailable("localStorage")) {
   // Too bad, no localStorage for us
 }
 
-
-
 function load(){
     if (!storageC){
         console.log("cannot access local storage");
@@ -138,7 +141,7 @@ function save(){
     //replace data
     window.localStorage.setItem(key,rows); //data is converted to string automatically
 }
-
+//listen for button presses
 incrementRow.addEventListener("click",()=>{addRow()});
 saveButton.addEventListener("click",save);
 loadButton.addEventListener("click",load);
