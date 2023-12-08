@@ -28,12 +28,6 @@ image: /images/platformer/backgrounds/hills.png
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" id="toggleNavigationBar1" class="closebtn">&times;</a>
-  <table>
-    <tr id="navigationPlaceAfter">
-      <th>Level</th>
-      <th>Character</th>
-    </tr>
-  </table>
 </div>
 
 <!-- Prepare DOM elements -->
@@ -75,7 +69,8 @@ image: /images/platformer/backgrounds/hills.png
       },
       platforms: {
         grass: { src: "/images/platformer/platforms/pigfarm.png"},
-        alien: { src: "/images/platformer/platforms/carpet.png" }
+        alien: { src: "/images/platformer/platforms/alien.png" },
+        carpet: { src: "/images/platformer/platforms/carpet.jpeg"}
       },
       backgrounds: {
         start: { src: "/images/platformer/backgrounds/Joke.jpg" },
@@ -226,32 +221,33 @@ image: /images/platformer/backgrounds/hills.png
   }
   document.getElementById("toggleNavigationBar").addEventListener("click",toggleWidth);
   document.getElementById("toggleNavigationBar1").addEventListener("click",toggleWidth);
-  //generate table
-  import GameEnv from '{{site.baseurl}}/assets/js/platformer/GameEnv.js';
-  import GameLevel from '{{site.baseurl}}/assets/js/platformer/GameLevel.js';
-  import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
-  
-  var levels = GameEnv.levels;
-  
-    var placeAfterElement = document.getElementById("navigationPlaceAfter");
 
-    for(let i=levels.length-1;i>-1;i-=1){
-      var row = document.createElement("tr");
-      var c1 = document.createElement("td");
-      var c2 = document.createElement("td");
-      c1.innerText = levels[i].tag;
-      if(levels[i].playerData){ //if player exists
-          var charImage = new Image();
-          charImage.src = "{{site.baseurl}}/"+levels[i].playerData.src;
-//        var array = levels[i].playerData.src.split("/");
-//        c2.innerText = array[array.length-1];
-          c2.append(charImage);
-      }
-      else{
-        c2.innerText = "none";
-      }
-      row.append(c1);
-      row.append(c2);
-      placeAfterElement.insertAdjacentElement("afterend",row);
-    }
+  //generate table
+  import Controller from '{{site.baseurl}}/assets/js/platformer/Controller.js';
+  
+  var myController = new Controller();
+  myController.initialize();
+
+  var table = myController.table;
+  document.getElementById("mySidenav").append(table);
+  
+    //for(let i=levels.length-1;i>-1;i-=1){
+    //  var row = document.createElement("tr");
+    //  var c1 = document.createElement("td");
+    //  var c2 = document.createElement("td");
+    //  c1.innerText = levels[i].tag;
+    //  if(levels[i].playerData){ //if player exists
+    //      var charImage = new Image();
+    //      charImage.src = "{{site.baseurl}}/"+levels[i].playerData.src;
+    //      //var array = levels[i].playerData.src.split("/");
+    //      //c2.innerText = array[array.length-1];
+    //      c2.append(charImage);
+    //  }
+    //  else{
+    //    c2.innerText = "none";
+    //  }
+    //  row.append(c1);
+    //  row.append(c2);
+    //  placeAfterElement.insertAdjacentElement("afterend",row);
+    //}
 </script>

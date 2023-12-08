@@ -38,6 +38,9 @@ class GameLevel {
         if (this.tubeImg) {
             imagesToLoad.push(this.loadImage(this.tubeImg));
         }
+        if (this.enemyImg) {
+            imagesToLoad.push(this.loadImage(this.enemyImg));
+        }
 
         try {
             // Do not proceed until images are loaded
@@ -78,7 +81,7 @@ class GameLevel {
             if (this.enemyImg) {
                 const enemyCanvas = document.createElement("canvas");
                 enemyCanvas.id = "enemy";
-                document.querySelector("#canvasContainer").appendChild(enenmyCanvas);
+                document.querySelector("#canvasContainer").appendChild(enemyCanvas);
                 const enemySpeedRatio = 0.7;
                 new Goomba(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
                 i++;

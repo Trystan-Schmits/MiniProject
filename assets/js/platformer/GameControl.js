@@ -58,9 +58,8 @@ const GameControl = {
         }
 
         // recycle gameLoop, aka recursion
-        requestAnimationFrame(this.gameLoop.bind(this));  
+        setTimeout(requestAnimationFrame(this.gameLoop.bind(this)),1000/60);  
     },
-
 };
 
 export default GameControl;

@@ -33,7 +33,7 @@ class GameObject {
     logElement() {
         var jsonifiedElement = this.stringifyElement();
         if (jsonifiedElement !== this.jsonifiedElement) {
-            console.log(jsonifiedElement);
+            //console.log(jsonifiedElement);
             this.jsonifiedElement = jsonifiedElement;
         }
     }
