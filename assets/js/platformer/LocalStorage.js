@@ -1,4 +1,3 @@
-
 export class LocalStorage{
     constructor(keys){
         this.keys = keys;
@@ -39,7 +38,7 @@ export class LocalStorage{
     
     load(key){//load a particular key
         if(!this.storageAvailable){return}; //check if local storage is possible
-        this[element] = window.localStorage.getItem(element);
+        this[key] = window.localStorage.getItem(key);
     }
 
     saveAll(){ //saves data for all keys in this.keys
