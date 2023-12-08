@@ -54,7 +54,7 @@ export class Controller extends LocalStorage{
             t.append(row);
         }
 
-        return t;returns <table> element
+        return t; //returns <table> element
     }
 }
 
