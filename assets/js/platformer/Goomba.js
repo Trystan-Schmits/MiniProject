@@ -4,9 +4,11 @@ import Character from './Character.js';
 
 class Goomba extends Character{
     constructor(canvas, image, speedRatio, enemyData){
-        console.log(image);
         super(canvas, image, speedRatio, enemyData.width, 
-            enemyData.height, )
+            enemyData.height)
+
+        this.x = GameEnv.innerWidth/2;
+        this.scaledCharacterHeightRatio = (1/20);
     }
 
     update() {
@@ -17,7 +19,6 @@ class Goomba extends Character{
             this.speed = -this.speed;
         }
         else if(this.x + this.canvasWidth >= GameEnv.innerWidth && direction == true){
-            console.log("fired", this.x, GameEnv.innerWidth, direction)
             this.speed = -this.speed;
         }
 

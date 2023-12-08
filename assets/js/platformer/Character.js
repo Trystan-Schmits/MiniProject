@@ -2,6 +2,9 @@ import GameEnv from './GameEnv.js';
 import GameObject from './GameObject.js';
 
 class Character extends GameObject {
+    // set Canvas scale,  80 represents size of Character height when inner Height is 832px
+    scaledCharacterHeightRatio =  (1 / 10);
+
     constructor(canvas, image, speedRatio, spriteWidth, spriteHeight) {
         super(canvas, image, speedRatio);
 
@@ -81,8 +84,7 @@ class Character extends GameObject {
      * intent is to size character in proportion to the screen size
     */
     size() {
-        // set Canvas scale,  80 represents size of Character height when inner Height is 832px
-        var scaledCharacterHeight = GameEnv.innerHeight * (80 / 832);
+        var scaledCharacterHeight = GameEnv.innerHeight * this.scaledCharacterHeightRatio;
         var canvasScale = scaledCharacterHeight/this.spriteHeight;
         this.canvasHeight = this.spriteHeight * canvasScale;
         this.canvasWidth = this.spriteWidth * canvasScale;
