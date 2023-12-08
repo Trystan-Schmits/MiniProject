@@ -16,7 +16,7 @@ class Goomba extends Character{
             // Change direction by reversing the speed
             this.speed = -this.speed;
         }
-        else if(this.x + this.width >= GameEnv.innerWidth && direction == true){
+        else if(this.x >= GameEnv.innerWidth && direction == true){
             this.speed = -this.speed;
         }
 
