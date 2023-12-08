@@ -4,8 +4,8 @@ import GameControl from "./GameControl.js";
 
 export class Controller extends LocalStorage{   
     constructor(){
-        var k = {currentLevel:"currentLevel"}; //default keys for localStorage
-        super(k); //creates this.keys
+        var keys = {currentLevel:"currentLevel"}; //default keys for localStorage
+        super(keys); //creates this.keys
     }
 
     //separated from constructor so that class can be created before levels are added
