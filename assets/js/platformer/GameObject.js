@@ -136,15 +136,15 @@ class GameObject {
         const otherCenterY = (otherRect.top + otherRect.bottom) / 2;
     
         // Calculate hitbox constants
-        const percentage = 0.5; 
+        const percentage = 0.1; 
         const widthReduction = thisRect.width * percentage;
         const heightReduction = thisRect.height * percentage;
     
         // Build hitbox by subtracting reductions from the left, right, top, and bottom
-        const thisLeft = thisRect.left + widthReduction;
-        const thisTop = thisRect.top + heightReduction;
-        const thisRight = thisRect.right - widthReduction;
-        const thisBottom = thisRect.bottom - heightReduction;
+        const thisLeft = thisRect.left //+ widthReduction;
+        const thisTop = thisRect.top //+ heightReduction;
+        const thisRight = thisRect.right //- widthReduction;
+        const thisBottom = thisRect.bottom //- heightReduction;
     
         // Determine hit and touch points of hit
         this.collisionData = {

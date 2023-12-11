@@ -4,6 +4,7 @@ import Platform from './Platform.js';
 import Player from './Player.js';
 import Tube from './Tube.js';
 import Goomba from './Goomba.js'
+import Scaffold from './Scaffold.js';
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
@@ -17,6 +18,7 @@ class GameLevel {
         this.enemyImg = gameObject.enemy?.file;
         this.enemyData = gameObject?.enemy;
         this.tubeImg = gameObject.tube?.file;
+        this.scaffoldImg = gameObject.scaffold?.file;
         this.isComplete = gameObject?.callback; // function that determines if level is complete
         GameEnv.levels.push(this);
     }
@@ -40,6 +42,9 @@ class GameLevel {
         }
         if (this.enemyImg) {
             imagesToLoad.push(this.loadImage(this.enemyImg));
+        }
+        if (this.scaffoldImg) {
+            imagesToLoad.push(this.loadImage(this.scaffoldImg));
         }
 
         try {
@@ -95,6 +100,16 @@ class GameLevel {
                 new Tube(tubeCanvas, loadedImages[i]);
                 i++;
             }
+
+            // Prepare HTML with Scaffold Canvas (if scaffoldImg is defined)
+            if (this.scaffoldImg) {
+                const scaffoldCanvas = document.createElement("canvas");
+                scaffoldCanvas.id = "scaffold";
+                document.querySelector("#canvasContainer").appendChild(scaffoldCanvas);
+                new Scaffold(scaffoldCanvas, loadedImages[i]);
+                i++;
+            }
+
 
         } catch (error) {
             console.error('Failed to load one or more images:', error);

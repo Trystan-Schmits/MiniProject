@@ -65,8 +65,8 @@ export class Player extends Character{
         var result = false;
     
         // verify key is in active animations
-        if (key in this.pressedKeys) {
-            result = (!this.isIdle && this.bottom <= this.y);
+        if (key in this.pressedKeys ) {
+            result = (!this.isIdle && this.bottom <= this.y)||!this.gravityEnabled;
         }
 
         // scene for on top of tube animation
@@ -94,7 +94,7 @@ export class Player extends Character{
         if (this.bottom <= this.y) {
             this.setAnimation(this.stashKey);
         }
-    
+
         return result;
     }
     
@@ -108,7 +108,7 @@ export class Player extends Character{
             if (this.movement.right) this.x += this.speed;  // Move to right
         }
         if (this.isGravityAnimation("w")) {
-            if (this.movement.down) this.y -= (this.bottom * .11);  // jump 11% higher than bottom
+            if (this.movement.down) this.y -= (this.bottom * .4);  // jump 11% higher than bottom
         } 
 
         // Perform super update actions
@@ -136,6 +136,38 @@ export class Player extends Character{
             this.movement.left = true;
             this.movement.right = true;
             this.movement.down = true;
+        }
+        if (this.collisionData.touchPoints.other.id === "scaffold") {
+            // Collision with the left side of the Platform
+            if (this.collisionData.touchPoints.other.left && (this.topOfPlatform === true)) {
+                this.movement.right = false;
+            }
+            // Collision with the right side of the platform
+            if (this.collisionData.touchPoints.other.right && (this.topOfPlatform === true)) {
+                this.movement.left = false;
+            }
+            // Collision with the top of the player
+            if (this.collisionData.touchPoints.this.ontop) {
+                this.gravityEnabled = false;
+                this.topOfPlatform = true; 
+            }
+            if (this.collisionData.touchPoints.this.top) {
+                this.gravityEnabled = false;
+            }
+            //if (this.collisionData.touchPoints.this.top) {
+            //    this.gravityEnabled = false;
+            //    
+            //    console.log(this.topOfPlatform + "top")
+            //    console.log(this.gravityEnabled + "grav")
+            //    //console.log("e");
+            //}
+        }else{
+            this.topOfPlatform = false;
+            this.movement.left = true;
+            this.movement.right = true;
+            this.movement.down = true;
+            this.gravityEnabled = true;
+            
         }
     }
     
