@@ -33,7 +33,7 @@ export class Controller extends LocalStorage{
 
         window.addEventListener("speed",(e)=>{ //updates this.gameSpeed when a speed event is fired
             this[this.keys.gameSpeed] = e.detail.speed();
-            GameEnv.gameSpeed = this[this.keys.gameSpeed]; //doesn't update speed in current level
+            GameEnv.gameSpeed = this[this.keys.gameSpeed]; //reload or change levels to see effect
             this.save(this.keys.gameSpeed); //save to local storage
         })
  
