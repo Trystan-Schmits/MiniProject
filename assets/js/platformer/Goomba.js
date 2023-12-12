@@ -9,6 +9,7 @@ class Goomba extends Character{
 
         this.x = GameEnv.innerWidth/2;
         this.scaledCharacterHeightRatio = (1/20);
+        this.isGoomba = true;
     }
 
     update() {
