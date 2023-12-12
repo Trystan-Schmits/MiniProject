@@ -231,9 +231,12 @@ image: /images/platformer/backgrounds/hills.png
   var myController = new Controller();
   myController.initialize();
 
-  var table = myController.table;
+  var table = myController.levelTable;
   document.getElementById("mySidenav").append(table);
   
+
+  var div = myController.speedDiv;
+  document.getElementById("mySidenav").append(div);
     //for(let i=levels.length-1;i>-1;i-=1){
     //  var row = document.createElement("tr");
     //  var c1 = document.createElement("td");
