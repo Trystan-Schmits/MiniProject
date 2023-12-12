@@ -6,6 +6,8 @@ export class Controller extends LocalStorage{
     constructor(){
         var keys = {currentLevel:"currentLevel",gameSpeed:"gameSpeed"}; //default keys for localStorage
         super(keys); //creates this.keys
+
+        console.log("browser local storage available: "+String(this.storageAvailable));
     }
 
     //separated from constructor so that class can be created before levels are added
