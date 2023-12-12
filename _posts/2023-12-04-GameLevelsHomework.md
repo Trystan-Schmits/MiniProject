@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GameLevels Lesson / Homework Previews (Outline)
+title: LocalStorage Lesson
 description: Local Storage / Character Selection
 courses: { csse: {week: 14} }
 type: collab
@@ -12,7 +12,9 @@ type: collab
 - Why is LocalStorage important: To prevent the loss of data storage, even when a tab or window is closed.
 
 
-# Local Storage:
+# Step 1: Implementing Controller.js and LocalStorage.js:
+
+
 
 
 <div>
