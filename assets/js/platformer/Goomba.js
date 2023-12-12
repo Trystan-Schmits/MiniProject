@@ -15,11 +15,11 @@ class Goomba extends Character{
     update() {
         var direction = this.speed > 0;
         // Check if the enemy is at the left or right boundary
-        if (this.x <= 0 && direction == false)  {
+        if (this.x <= 0 && (direction == false||this.speed>=0))  {
             // Change direction by reversing the speed
             this.speed = -this.speed;
         }
-        else if(this.x + this.canvasWidth >= GameEnv.innerWidth && direction == true){
+        else if(this.x + this.canvasWidth >= GameEnv.innerWidth && (direction == true||this.speed<0)){
             this.speed = -this.speed;
         }
 
