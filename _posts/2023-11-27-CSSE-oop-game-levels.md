@@ -8,7 +8,7 @@ image: /images/platformer/backgrounds/hills.png
 ---
 
 <style>
-    #gameBegin, #controls, #gameOver, #navigation {
+    #gameBegin, #controls, #gameOver, #settings {
       position: relative;
         z-index: 2; /*Ensure the controls are on top*/
     }
@@ -26,8 +26,8 @@ image: /images/platformer/backgrounds/hills.png
     }
 </style>
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" id="toggleNavigationBar1" class="closebtn">&times;</a>
+<div id="mySidebar" class="sidenav">
+  <a href="javascript:void(0)" id="toggleSettingsBar1" class="closebtn">&times;</a>
 </div>
 
 <!-- Prepare DOM elements -->
@@ -40,9 +40,9 @@ image: /images/platformer/backgrounds/hills.png
         <!-- Background controls -->
         <button id="toggleCanvasEffect">Invert</button>
     </div>
-    <div id="navigation"> <!-- Controls -->
+    <div id="settings"> <!-- Controls -->
         <!-- Background controls -->
-        <button id="toggleNavigationBar">Navigation</button>
+        <button id="toggleSettingsBar">Settings</button>
     </div>
     <div id="gameOver" hidden>
         <button id="restartGame">Restart</button>
@@ -220,10 +220,10 @@ image: /images/platformer/backgrounds/hills.png
   var toggle = false;
   function toggleWidth(){
     toggle = !toggle;
-    document.getElementById("mySidenav").style.width = toggle?"250px":"0px";
+    document.getElementById("mySidebar").style.width = toggle?"250px":"0px";
   }
-  document.getElementById("toggleNavigationBar").addEventListener("click",toggleWidth);
-  document.getElementById("toggleNavigationBar1").addEventListener("click",toggleWidth);
+  document.getElementById("toggleSettingsBar").addEventListener("click",toggleWidth);
+  document.getElementById("toggleSettingsBar1").addEventListener("click",toggleWidth);
 
   //generate table
   import Controller from '{{site.baseurl}}/assets/js/platformer/Controller.js';
@@ -232,11 +232,11 @@ image: /images/platformer/backgrounds/hills.png
   myController.initialize();
 
   var table = myController.levelTable;
-  document.getElementById("mySidenav").append(table);
+  document.getElementById("mySidebar").append(table);
   
 
   var div = myController.speedDiv;
-  document.getElementById("mySidenav").append(div);
+  document.getElementById("mySidebar").append(div);
     //for(let i=levels.length-1;i>-1;i-=1){
     //  var row = document.createElement("tr");
     //  var c1 = document.createElement("td");
