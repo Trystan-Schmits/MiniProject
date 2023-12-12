@@ -1,6 +1,7 @@
 export class LocalStorage{
     constructor(keys){
         this.keys = keys;
+        console.log("browser local storage available: "+String(this.storageAvailable));
     }
 
     get storageAvailable(){ //checks if browser is able to use local storage
