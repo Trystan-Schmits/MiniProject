@@ -77,7 +77,8 @@ image: /images/platformer/backgrounds/hills.png
         hills: { src: "/images/platformer/backgrounds/GD_Background.png" },
         planet: { src: "/images/platformer/backgrounds/Del_Norte.png" },
         castles: { src: "/images/platformer/backgrounds/castles.png" },
-        end: { src: "/images/platformer/backgrounds/game_over.png" }
+        end: { src: "/images/platformer/backgrounds/game_over.png" },
+        theMove: { src: "/images/Game/room2.png" },
       },
       players: {
         mario: {
@@ -118,6 +119,18 @@ image: /images/platformer/backgrounds/hills.png
           runningLeft: { row: 5, frames: 4, idleFrame: {column: 1, frames: 0} },
           runningRight: { row: 4, frames: 4, idleFrame: {column: 1, frames: 0} },
           s: {}, // Stop the movement 
+        },
+        jaden: {
+          type: 0,
+          src: "/images/Game/walking-sprite2.png",
+          width: 44,
+          height: 54,
+          w: { row: 0, frames: 0 },
+          wa: { row: 1, frames: 4 },
+          wd: { row: 0, frames: 4 },
+          a: { row: 1, frames: 4, idleFrame: { column: 3, frames: 0 } },
+          s: { row: 0, frames: 0 },
+          d: { row: 0, frames: 4, idleFrame: { column: 3, frames: 0 } }
         },
       },
       enemies: {
@@ -215,6 +228,7 @@ image: /images/platformer/backgrounds/hills.png
     new GameLevel( {tag: "hills", background: assets.backgrounds.hills, platform: assets.platforms.grass, player: assets.players.mario, tube: assets.obstacles.tube, scaffold: assets.scaffolds.brick, callback: testerCallBack } );
     new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, enemy: assets.enemies.goomba, callback: testerCallBack } );
     new GameLevel( {tag: "lopez", background: assets.backgrounds.planet, platform: assets.platforms.alien, scaffold: assets.scaffolds.brick, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
+     new GameLevel( {tag: "theMove", background: assets.backgrounds.theMove, platform: assets.platforms.alien, player: assets.players.jaden, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );
 
