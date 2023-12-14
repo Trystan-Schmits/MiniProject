@@ -118,17 +118,17 @@ export class Player2 extends Character{ //for lopez code
         if (this.isGravityAnimation("w")) {
             if (this.movement.down) this.y -= (this.bottom * .4);  // jump 11% higher than bottom
         } 
-
-        if (this.pressedKeys['a'] && this.movement.left) {
+        
+        if (this.pressedKeys['a'] && this.currentSpeed <= 0) {
             this.currentSpeed -= this.acceleration;
-        } else if (this.pressedKeys['d'] && this.movement.right) {
+        } else if (this.pressedKeys['d'] && this.currentSpeed >= 0) {
             this.currentSpeed += this.acceleration;
-        } else if (this.pressedKeys['a'] && this.movement.right){
+        } else if (this.pressedKeys['a'] && this.currentSpeed > 0){
             // Decelerate faster when going opposite direction
-            this.currentSpeed *= (1 - this.deceleration*3);
-        } else if (this.pressedKeys['d'] && this.movement.left){
-                // Decelerate faster when going opposite direction
-                this.currentSpeed *= (1 - this.deceleration*3);
+            this.currentSpeed -= this.acceleration*2;
+        } else if (this.pressedKeys['d'] && this.currentSpeed < 0){
+            // Decelerate faster when going opposite direction
+            this.currentSpeed += this.acceleration*2;
         } else{
             // Decelerate when no movement keys are pressed
             this.currentSpeed *= (1 - this.deceleration);
