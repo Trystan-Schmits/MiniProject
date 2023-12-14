@@ -4,7 +4,7 @@ import GameControl from "./GameControl.js";
 
 export class Controller extends LocalStorage{   
     constructor(){
-        var keys = {currentLevel:"currentLevel",gameSpeed:"gameSpeed"}; //default keys for localStorage
+        var keys = {currentLevel:"currentLevel",gameSpeed:"gameSpeed",gravity:"gravity"}; //default keys for localStorage
         super(keys); //creates this.keys
     }
 
@@ -25,6 +25,13 @@ export class Controller extends LocalStorage{
         else{ //if not gameSpeedthen set this.gameSpeed to GameEnv.gameSpeed (default)
             this[this.keys.gameSpeed] = GameEnv.gameSpeed;
         }
+
+        if(this[this.keys.gravity]){ //update to custom gameSpeed
+            GameEnv.gravity = Number(this[this.keys.gravity]);
+         }
+         else{ //if not gameSpeedthen set this.gameSpeed to GameEnv.gameSpeed (default)
+             this[this.keys.gravity] = GameEnv.gravity;
+         }
         
         window.addEventListener("resize",()=>{ //updates this.currentLevel when the level changes
             this[this.keys.currentLevel] = GameEnv.levels.indexOf(GameEnv.currentLevel);
@@ -32,9 +39,15 @@ export class Controller extends LocalStorage{
         });
 
         window.addEventListener("speed",(e)=>{ //updates this.gameSpeed when a speed event is fired
-            this[this.keys.gameSpeed] = e.detail.speed();
+            this[this.keys.gameSpeed] = Number(e.detail.speed());
             GameEnv.gameSpeed = this[this.keys.gameSpeed]; //reload or change levels to see effect
             this.save(this.keys.gameSpeed); //save to local storage
+        })
+
+        window.addEventListener("gravity",(e)=>{ //updates this.gameSpeed when a speed event is fired
+            this[this.keys.gravity] = Number(e.detail.gravity());
+            GameEnv.gravity = this[this.keys.gravity]; //reload or change levels to see effect
+            this.save(this.keys.gravity); //save to local storage
         })
  
     }
@@ -79,6 +92,24 @@ export class Controller extends LocalStorage{
         var input1 = document.createElement("input"); //create inputfeild
         input1.type = "number"; //type number (1234...)
         const event = new CustomEvent("speed", { detail: {speed:()=>input1.value} });
+        input1.addEventListener("input",()=>{ //after input feild is edited
+            window.dispatchEvent(event); //dispatch event to update game speed
+        })
+        div.append(input1);
+        
+        return div; //returns <div> element
+    }
+
+    get gravityDiv(){
+        var div = document.createElement("div"); //container
+
+        var a = document.createElement("a"); //create text
+        a.innerText = "Gravity";
+        div.append(a);
+
+        var input1 = document.createElement("input"); //create inputfeild
+        input1.type = "number"; //type number (1234...)
+        const event = new CustomEvent("gravity", { detail: {gravity:()=>input1.value} });
         input1.addEventListener("input",()=>{ //after input feild is edited
             window.dispatchEvent(event); //dispatch event to update game speed
         })
