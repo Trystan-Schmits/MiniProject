@@ -19,6 +19,7 @@ export class Player2 extends Character{ //for lopez code
         this.currentSpeed = 0;
         this.acceleration = 0.11; // Adjust based on preference
         this.deceleration = 0.1; // Adjust based on preference 
+        this.count = 0;
 
         // Player control data
         this.pressedKeys = {};
@@ -117,6 +118,50 @@ export class Player2 extends Character{ //for lopez code
         if (this.isGravityAnimation("w")) {
             if (this.movement.down) this.y -= (this.bottom * .4);  // jump 11% higher than bottom
         } 
+
+        if (this.pressedKeys['a'] && this.movement.left) {
+            this.currentSpeed -= this.acceleration;
+        } else if (this.pressedKeys['d'] && this.movement.right) {
+            this.currentSpeed += this.acceleration;
+        } else {
+            // Decelerate when no movement keys are pressed
+            this.currentSpeed *= (1 - this.deceleration);
+        }
+
+        // Apply speed limit
+        if (Math.abs(this.currentSpeed) > this.speedLimit) {
+            this.currentSpeed = this.currentSpeed > 0 ? this.speedLimit : -this.speedLimit;
+        }
+
+        this.x += this.currentSpeed;
+
+        // Check for speed threshold to change sprite sheet rows
+        const walkingSpeedThreshold = 1; // Walking speed threshold
+        const runningSpeedThreshold = 5; // Running speed threshold
+
+        if (Math.abs(this.currentSpeed) >= runningSpeedThreshold) {
+            this.count = 0;
+            // Change sprite sheet row for running
+            if (this.currentSpeed > 0) {
+            this.setFrameY(this.playerData.runningRight.row);
+            } else {
+                this.setFrameY(this.playerData.runningLeft.row);
+            }
+        } else if (Math.abs(this.currentSpeed) >= walkingSpeedThreshold) {
+            this.count = 0;
+            // Change sprite sheet row for walking
+            if (this.currentSpeed > 0) {
+                this.setFrameY(this.playerData.d.row);
+            } else {
+                this.setFrameY(this.playerData.a.row);
+            }
+        } else if (this.currentSpeed < walkingSpeedThreshold && this.y >= this.bottom){
+            this.count += 1;
+        // Revert to normal animation if speed is below the walking threshold
+            if (this.count >= GameEnv.frameRate*2){ //if 2 seconds have passed
+            this.setFrameY(this.playerData.idle.row);
+            }
+        }
 
         // Perform super update actions
         super.update();
@@ -232,4 +277,4 @@ export class Player2 extends Character{ //for lopez code
 }
 
 
-export default Player;
+export default Player2;

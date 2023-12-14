@@ -8,6 +8,7 @@ export class GameEnv {
     // game attributes
     static gameSpeed = 2;
     static gravity = 3;
+    static frameRate = 60;
     static innerWidth;
     static prevInnerWidth;
     static innerHeight;

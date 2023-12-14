@@ -5,7 +5,7 @@ import Player from './Player.js';
 import Tube from './Tube.js';
 import Goomba from './Goomba.js'
 import Scaffold from './Scaffold.js';
-import { Player2 } from './Player2.js';
+import Player2 from './Player2.js';
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
