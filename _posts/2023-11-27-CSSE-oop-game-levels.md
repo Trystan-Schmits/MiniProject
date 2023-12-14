@@ -229,7 +229,7 @@ image: /images/platformer/backgrounds/hills.png
     new GameLevel( {tag: "hills", background: assets.backgrounds.hills, platform: assets.platforms.grass, player: assets.players.mario, tube: assets.obstacles.tube, scaffold: assets.scaffolds.brick, callback: testerCallBack } );
     new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, enemy: assets.enemies.goomba, callback: testerCallBack } );
     new GameLevel( {tag: "lopez", background: assets.backgrounds.planet, platform: assets.platforms.alien, scaffold: assets.scaffolds.brick, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
-     new GameLevel( {tag: "theMove", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, callback: testerCallBack } );
+     new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );
 
@@ -247,7 +247,7 @@ image: /images/platformer/backgrounds/hills.png
 
 </script>
 
-<!-- navigation -->
+<!-- settings -->
 <script type="module">
   //sidebar
   var toggle = false;
