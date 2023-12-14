@@ -5,6 +5,7 @@ import Player from './Player.js';
 import Tube from './Tube.js';
 import Goomba from './Goomba.js'
 import Scaffold from './Scaffold.js';
+import { Player2 } from './Player2.js';
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
@@ -78,7 +79,12 @@ class GameLevel {
                 playerCanvas.id = "character";
                 document.querySelector("#canvasContainer").appendChild(playerCanvas);
                 const playerSpeedRatio = 0.7;
-                new Player(playerCanvas, loadedImages[i], playerSpeedRatio, this.playerData);
+                if (this.playerData.type == 0){
+                    new Player(playerCanvas, loadedImages[i], playerSpeedRatio, this.playerData);
+                }
+                else{
+                    new Player2(playerCanvas, loadedImages[i], playerSpeedRatio, this.playerData);
+                }
                 i++;
             }
 

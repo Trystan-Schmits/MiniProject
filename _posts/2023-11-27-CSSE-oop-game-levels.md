@@ -81,6 +81,7 @@ image: /images/platformer/backgrounds/hills.png
       },
       players: {
         mario: {
+          type: 0;
           src: "/images/platformer/sprites/mario.png",
           width: 256,
           height: 256,
@@ -92,6 +93,7 @@ image: /images/platformer/backgrounds/hills.png
           d: { row: 2, frames: 7, idleFrame: { column: 7, frames: 0 } }
         },
         monkey: {
+          type: 0;
           src: "/images/platformer/sprites/monkey.png",
           width: 40,
           height: 40,
@@ -101,6 +103,21 @@ image: /images/platformer/backgrounds/hills.png
           a: { row: 1, frames: 15, idleFrame: { column: 7, frames: 0 } },
           s: { row: 12, frames: 15 },
           d: { row: 0, frames: 15, idleFrame: { column: 7, frames: 0 } }
+        },
+        lopez: {
+          type: 0;
+          src: "/images/platformer/sprites/lopez.png", // Modify this to match your file path
+          width: 46,
+          height: 51,
+          //idle: { row: 6, frames: 1, idleFrame: {column: 1, frames: 0} },
+          a: { row: 1, frames: 3, idleFrame: { column: 1, frames: 0 } }, // Right Movement
+          d: { row: 2, frames: 3, idleFrame: { column: 1, frames: 0 } }, // Left Movement 
+          w: { row: 3, frames: 3}, // Up
+          wa: { row: 3, frames: 3},
+          wd: { row: 3, frames: 3},
+          //runningLeft: { row: 5, frames: 4, idleFrame: {column: 1, frames: 0} },
+          //runningRight: { row: 4, frames: 4, idleFrame: {column: 1, frames: 0} },
+          //s: {}, // Stop the movement 
         },
       },
       enemies: {
@@ -197,6 +214,7 @@ image: /images/platformer/backgrounds/hills.png
     // Game screens
     new GameLevel( {tag: "hills", background: assets.backgrounds.hills, platform: assets.platforms.grass, player: assets.players.mario, tube: assets.obstacles.tube, scaffold: assets.scaffolds.brick, callback: testerCallBack } );
     new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, enemy: assets.enemies.goomba, callback: testerCallBack } );
+    new GameLevel( {tag: "lopez", background: assets.backgrounds.planet, platform: assets.platforms.alien, scaffold: assets.scaffolds.brick, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );
 
