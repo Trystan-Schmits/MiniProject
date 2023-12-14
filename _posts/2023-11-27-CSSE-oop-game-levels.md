@@ -256,8 +256,9 @@ image: /images/platformer/backgrounds/hills.png
   var div = myController.speedDiv;
   document.getElementById("mySidebar").append(div);
 
-  var div = myController.gravityDiv;
-  document.getElementById("mySidebar").append(div);
+
+  var div2 = myController.gravityDiv;
+  document.getElementById("mySidebar").append(div2);
     //for(let i=levels.length-1;i>-1;i-=1){
     //  var row = document.createElement("tr");
     //  var c1 = document.createElement("td");
