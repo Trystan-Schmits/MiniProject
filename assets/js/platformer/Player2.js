@@ -123,7 +123,13 @@ export class Player2 extends Character{ //for lopez code
             this.currentSpeed -= this.acceleration;
         } else if (this.pressedKeys['d'] && this.movement.right) {
             this.currentSpeed += this.acceleration;
-        } else {
+        } else if (this.pressedKeys['a'] && this.movement.right){
+            // Decelerate faster when going opposite direction
+            this.currentSpeed *= (1 - this.deceleration*3);
+        } else if (this.pressedKeys['d'] && this.movement.left){
+                // Decelerate faster when going opposite direction
+                this.currentSpeed *= (1 - this.deceleration*3);
+        } else{
             // Decelerate when no movement keys are pressed
             this.currentSpeed *= (1 - this.deceleration);
         }
