@@ -71,7 +71,7 @@ image: /images/platformer/backgrounds/hills.png
         grass: { src: "/images/platformer/platforms/pigfarm.png"},
         alien: { src: "/images/platformer/platforms/alien.png" },
         carpet: { src: "/images/platformer/platforms/carpet.jpeg"},
-        redCarpet: { src: "/images/Game/redPixel.png"}
+        redCarpet: { src: "/images/platformer/platforms/redPixel.png"}
       },
       backgrounds: {
         start: { src: "/images/platformer/backgrounds/Joke.jpg" },
@@ -79,7 +79,7 @@ image: /images/platformer/backgrounds/hills.png
         planet: { src: "/images/platformer/backgrounds/Del_Norte.png" },
         castles: { src: "/images/platformer/backgrounds/castles.png" },
         end: { src: "/images/platformer/backgrounds/game_over.png" },
-        theMove: { src: "/images/Game/room2.png" },
+        theMove: { src: "/images/platformer/backgrounds/hallway.png" },
       },
       players: {
         mario: {
@@ -123,7 +123,7 @@ image: /images/platformer/backgrounds/hills.png
         },
         jaden: {
           type: 0,
-          src: "/images/Game/walking-sprite2.png",
+          src: "/images/platformer/sprites/jaden.png",
           width: 44,
           height: 54,
           w: { row: 0, frames: 0 },
@@ -142,7 +142,7 @@ image: /images/platformer/backgrounds/hills.png
           height: 452,
         },
         squid: {
-          src: "/images/Game/squid.png",
+          src: "/images/platformer/sprites/squid.png",
           type: 1,
           width: 190,
           height: 175,
