@@ -250,6 +250,8 @@ image: /images/platformer/backgrounds/hills.png
     new GameLevel( {tag: "lopez", background: assets.backgrounds.clouds, background2: assets.backgrounds.hills, platform: assets.platforms.grass, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
     //level based on Trystan's game from last tri.
      new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, enemy: assets.enemies.squid, callback: testerCallBack } );
+    //level with greenPlanet background
+     new GameLevel( {tag: "green planet", background: assets.backgrounds.greenPlanet, platform: assets.platforms.grass, player: assets.players.monkey, enemy: assets.enemies.squid, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );
 
