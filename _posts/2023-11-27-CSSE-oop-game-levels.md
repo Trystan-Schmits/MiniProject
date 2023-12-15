@@ -80,8 +80,10 @@ image: /images/platformer/backgrounds/hills.png
         hills: { src: "/images/platformer/backgrounds/hills.png" },
         geometry: { src: "/images/platformer/backgrounds/GD_Background.png" },
         planet: { src: "/images/platformer/backgrounds/planet.jpg" },
+        greenPlanet: { src: "/images/platformer/backgrounds/greenPlanet.jpg" },
         school: { src: "/images/platformer/backgrounds/Del_Norte.png" }, 
         castles: { src: "/images/platformer/backgrounds/castles.png" },
+        clouds: { src: "/images/platformer/backgrounds/clouds.png" },
         end: { src: "/images/platformer/backgrounds/game_over.png" },
         theMove: { src: "/images/platformer/backgrounds/hallway.png" },
       },
@@ -241,7 +243,7 @@ image: /images/platformer/backgrounds/hills.png
     // Game screens
     new GameLevel( {tag: "geometry", background: assets.backgrounds.geometry, platform: assets.platforms.grass, player: assets.players.mario, tube: assets.obstacles.tube, scaffold: assets.scaffolds.brick, callback: testerCallBack } );
     new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, enemy: assets.enemies.goomba, callback: testerCallBack } );
-    new GameLevel( {tag: "lopez", background: assets.backgrounds.hills, platform: assets.platforms.grass, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
+    new GameLevel( {tag: "lopez", background: assets.backgrounds.clouds, background2: assets.backgrounds.hills, platform: assets.platforms.grass, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
      new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, enemy: assets.enemies.squid, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );

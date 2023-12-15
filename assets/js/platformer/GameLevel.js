@@ -1,5 +1,6 @@
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
+import Background2 from './Background2.js';
 import Platform from './Platform.js';
 import Player from './Player.js';
 import Tube from './Tube.js';
@@ -14,6 +15,7 @@ class GameLevel {
         // conditional assignments from GameObject to instance variables
         this.tag = gameObject?.tag;
         this.backgroundImg = gameObject.background?.file;
+        this.background2Img = gameObject.background2?.file;
         this.platformImg = gameObject.platform?.file;
         this.playerImg = gameObject.player?.file;
         this.playerData = gameObject?.player;
@@ -32,6 +34,9 @@ class GameLevel {
         const imagesToLoad = [];
         if (this.backgroundImg) {
             imagesToLoad.push(this.loadImage(this.backgroundImg));
+        }
+        if (this.background2Img) {
+            imagesToLoad.push(this.loadImage(this.background2Img));
         }
         if (this.platformImg) {
             imagesToLoad.push(this.loadImage(this.platformImg));
@@ -61,6 +66,16 @@ class GameLevel {
                 document.querySelector("#canvasContainer").appendChild(backgroundCanvas);
                 const backgroundSpeedRatio = 0;
                 new Background(backgroundCanvas, loadedImages[i], backgroundSpeedRatio);
+                i++;
+            }
+
+            // Prepare HTML with Background Canvas (if backgroundImg is defined)
+            if (this.background2Img) {
+                const backgroundCanvas = document.createElement("canvas");
+                backgroundCanvas.id = "background2";
+                document.querySelector("#canvasContainer").appendChild(backgroundCanvas);
+                const backgroundSpeedRatio = 0;
+                new Background2(backgroundCanvas, loadedImages[i], backgroundSpeedRatio);
                 i++;
             }
 
