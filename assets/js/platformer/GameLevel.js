@@ -6,6 +6,7 @@ import Tube from './Tube.js';
 import Goomba from './Goomba.js'
 import Scaffold from './Scaffold.js';
 import Player2 from './Player2.js';
+import Squid from './Squid.js';
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
@@ -91,10 +92,15 @@ class GameLevel {
             // Prepare HTML with Enenemy Canvas (if enemyImg is defined)
             if (this.enemyImg) {
                 const enemyCanvas = document.createElement("canvas");
-                enemyCanvas.id = "enemy";
                 document.querySelector("#canvasContainer").appendChild(enemyCanvas);
                 const enemySpeedRatio = 0.7;
-                new Goomba(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
+                if (this.enemyData.type == 0){
+                    enemyCanvas.id = "enemy";
+                    new Goomba(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
+                }else{
+                    enemyCanvas.id = "enemy2";
+                    new Squid(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
+                }
                 i++;
             }
 

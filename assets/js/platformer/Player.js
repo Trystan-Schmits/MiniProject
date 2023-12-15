@@ -186,6 +186,11 @@ export class Player extends Character{
                 }
             }
         }
+
+        if (this.collisionData.touchPoints.other.id === "enemy2") {
+            //reload current level (death)
+            GameControl.transitionToLevel(GameEnv.levels[GameEnv.levels.indexOf(GameEnv.currentLevel)]);
+        }
     }
     
     // Event listener key down
