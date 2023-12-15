@@ -32,12 +32,12 @@ class Squid extends Character{
         if (GameEnv.player){ // turn toward player
             if(GameEnv.player.x >= this.x  && (direction == false||this.speed<=0)){
                 this.count += 1;
-                if (this.count >= GameEnv.frameRate*2){
+                if (this.count >= GameEnv.frameRate){
                     this.speed = -this.speed;
                 }
             } else if(GameEnv.player.x <= this.x && (direction == true||this.speed>0)){
                 this.count += 1;
-                if (this.count >= GameEnv.frameRate*2){
+                if (this.count >= GameEnv.frameRate){
                     this.speed = -this.speed;
                 }
             }
