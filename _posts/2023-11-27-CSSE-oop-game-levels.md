@@ -75,7 +75,8 @@ image: /images/platformer/backgrounds/hills.png
       },
       backgrounds: {
         start: { src: "/images/platformer/backgrounds/Joke.jpg" },
-        hills: { src: "/images/platformer/backgrounds/GD_Background.png" },
+        hills: { src: "/images/platformer/backgrounds/hills.png" },
+        geometry: { src: "/images/platformer/backgrounds/GD_Background.png" },
         planet: { src: "/images/platformer/backgrounds/Del_Norte.png" },
         castles: { src: "/images/platformer/backgrounds/castles.png" },
         end: { src: "/images/platformer/backgrounds/game_over.png" },
@@ -151,6 +152,7 @@ image: /images/platformer/backgrounds/hills.png
       },
       scaffolds: {
           brick: { src: "/images/platformer/obstacles/brick.png" }, //need to import image
+          grass: { src: "/images/platformer/obstacles/grassScaffold.png" }, //need to import image
       },
     };
 
@@ -234,9 +236,9 @@ image: /images/platformer/backgrounds/hills.png
     new GameLevel( {tag: "start", callback: startGameCallback } );
     new GameLevel( {tag: "home", background: assets.backgrounds.start, callback: homeScreenCallback } );
     // Game screens
-    new GameLevel( {tag: "hills", background: assets.backgrounds.hills, platform: assets.platforms.grass, player: assets.players.mario, tube: assets.obstacles.tube, scaffold: assets.scaffolds.brick, callback: testerCallBack } );
+    new GameLevel( {tag: "geometry", background: assets.backgrounds.geometry, platform: assets.platforms.grass, player: assets.players.mario, tube: assets.obstacles.tube, scaffold: assets.scaffolds.brick, callback: testerCallBack } );
     new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, enemy: assets.enemies.goomba, callback: testerCallBack } );
-    new GameLevel( {tag: "lopez", background: assets.backgrounds.planet, platform: assets.platforms.alien, scaffold: assets.scaffolds.brick, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
+    new GameLevel( {tag: "lopez", background: assets.backgrounds.hills, platform: assets.platforms.alien, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
      new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, enemy: assets.enemies.squid, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );
