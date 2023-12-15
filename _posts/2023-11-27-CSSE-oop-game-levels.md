@@ -68,7 +68,8 @@ image: /images/platformer/backgrounds/hills.png
         tube: { src: "/images/platformer/obstacles/tube.png" },
       },
       platforms: {
-        grass: { src: "/images/platformer/platforms/pigfarm.png"},
+        grass: { src: "/images/platformer/platforms/grass.png"},
+        pigfarm: { src: "/images/platformer/platforms/pigfarm.png"},
         alien: { src: "/images/platformer/platforms/alien.png" },
         carpet: { src: "/images/platformer/platforms/carpet.jpeg"},
         redCarpet: { src: "/images/platformer/platforms/redPixel.png"}
@@ -238,7 +239,7 @@ image: /images/platformer/backgrounds/hills.png
     // Game screens
     new GameLevel( {tag: "geometry", background: assets.backgrounds.geometry, platform: assets.platforms.grass, player: assets.players.mario, tube: assets.obstacles.tube, scaffold: assets.scaffolds.brick, callback: testerCallBack } );
     new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, enemy: assets.enemies.goomba, callback: testerCallBack } );
-    new GameLevel( {tag: "lopez", background: assets.backgrounds.hills, platform: assets.platforms.alien, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
+    new GameLevel( {tag: "lopez", background: assets.backgrounds.hills, platform: assets.platforms.grass, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
      new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, enemy: assets.enemies.squid, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );

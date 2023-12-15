@@ -12,7 +12,7 @@ export class Background extends GameObject {
     *  width is extent of background image
     */
     update() {
-        this.x = (this.x - this.speed) % this.width;
+        this.x = (this.x - GameEnv.backgroundSpeed/4) % this.width;
     }
 
     /* To draws are used to capture primary frame and wrap around ot next frame
@@ -20,8 +20,10 @@ export class Background extends GameObject {
      * x + width to y is wrap around draw
     */
     draw() {
+        this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
         this.ctx.drawImage(this.image, this.x, this.y);
         this.ctx.drawImage(this.image, this.x + this.width, this.y);
+        this.ctx.drawImage(this.image, this.x - this.width, this.y);
     }
 
     /* Background camvas is set to screen

@@ -104,9 +104,11 @@ export class Player extends Character{
     update() {
         if (this.isAnimation("a")) {
             if (this.movement.left) this.x -= this.speed;  // Move to left
+            GameEnv.backgroundSpeed = -this.speed;
         }
         if (this.isAnimation("d")) {
             if (this.movement.right) this.x += this.speed;  // Move to right
+            GameEnv.backgroundSpeed = this.speed;
         }
         if (this.isGravityAnimation("w")) {
             if (this.movement.down) this.y -= (this.bottom * .4);  // jump 11% higher than bottom
@@ -215,7 +217,8 @@ export class Player extends Character{
             }
             this.setAnimation(key);  
             // player idle
-            this.isIdle = true;     
+            this.isIdle = true;   
+            GameEnv.backgroundSpeed = 0;  
         }
     }
 

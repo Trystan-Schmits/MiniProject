@@ -24,6 +24,9 @@ export class GameEnv {
     // canvas filter property
     static isInverted = true;
 
+    //background speeds
+    static backgroundSpeed = 0;
+
     // Make the constructor private to prevent instantiation
     constructor() {
         throw new Error('GameEnv is a static class and cannot be instantiated.');
