@@ -75,7 +75,8 @@ image: /images/platformer/backgrounds/hills.png
         redCarpet: { src: "/images/platformer/platforms/redPixel.png"}
       },
       backgrounds: {
-        start: { src: "/images/platformer/backgrounds/Joke.jpg" },
+        start: { src: "/images/platformer/backgrounds/home.jpg" },
+        joke: { src: "/images/platformer/backgrounds/Joke.jpg" },
         hills: { src: "/images/platformer/backgrounds/hills.png" },
         geometry: { src: "/images/platformer/backgrounds/GD_Background.png" },
         planet: { src: "/images/platformer/backgrounds/Del_Norte.png" },
