@@ -33,12 +33,16 @@ image: /images/platformer/backgrounds/hills.png
  
     @keyframes fadeInAnimation {
       0% {
-          translate: -100% 0;
+          /*translate: -100% 0;
           rotate: -180deg;
+          */
+          clip-path: circle(0%);
       }
       100% {
-          translate: 0 0;
+          /*translate: 0 0;
           rotate: 0deg;
+          */
+          clip-path: circle(100%);
       }
     }
 </style>
