@@ -239,8 +239,18 @@ export class Player2 extends Character{ //for lopez code
                 this.y -= this.bottom*.2;//bounce
                 for(let i = 0; i<GameEnv.gameObjects.length;i++){//loop through current gameObjects
                     if(GameEnv.gameObjects[i].isGoomba){ //look for object with (isGoomba==true) tag
-                        GameEnv.gameObjects[i].canvas.remove(); //remove goomba sprite from current level
-                        GameEnv.gameObjects.splice(i,1); //remove goomba object from current level
+                        var goomba = GameEnv.gameObjects[i].canvas; 
+
+                        //remove goomba object
+                        GameEnv.gameObjects.splice(i,1);
+
+                        //animation
+                        goomba.style["transform-origin"] = "bottom left";
+                        goomba.style.transition = "all .3s ease-out";
+                        goomba.style.transform = "scaleY(10%)";
+                        setTimeout(()=>{
+                             goomba.remove(); //remove goomba sprite from current level
+                        },600)
                     }
                 }
             }

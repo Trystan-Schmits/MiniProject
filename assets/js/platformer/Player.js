@@ -150,10 +150,10 @@ export class Player extends Character{
                 this.movement.left = false;
             }
             // Collision with the top of the player
-            if (this.collisionData.touchPoints.this.ontop) {
-                this.gravityEnabled = false;
-                this.topOfPlatform = true; 
-            }
+            //if (this.collisionData.touchPoints.this.ontop) {
+            //    this.gravityEnabled = false;
+            //    this.topOfPlatform = true; 
+            //}
             if (this.collisionData.touchPoints.this.top) {
                 this.gravityEnabled = false;
             }
@@ -174,7 +174,7 @@ export class Player extends Character{
         }
 
         if (this.collisionData.touchPoints.other.id === "enemy") {
-            if (this.y >= this.bottom){ //you died
+            if (this.y >= this.bottom){ //you died -- you're touching the ground
                 //reload current level (death)
                 GameControl.transitionToLevel(GameEnv.levels[GameEnv.levels.indexOf(GameEnv.currentLevel)]);
             }
@@ -182,8 +182,20 @@ export class Player extends Character{
                 this.y -= this.bottom*.2;//bounce
                 for(let i = 0; i<GameEnv.gameObjects.length;i++){//loop through current gameObjects
                     if(GameEnv.gameObjects[i].isGoomba){ //look for object with (isGoomba==true) tag
-                        GameEnv.gameObjects[i].canvas.remove(); //remove goomba sprite from current level
-                        GameEnv.gameObjects.splice(i,1); //remove goomba object from current level
+                        //get goomba canvas
+                        var goomba = GameEnv.gameObjects[i].canvas; 
+
+                        //remove goomba object
+                        GameEnv.gameObjects.splice(i,1);
+
+                        //animation
+                        goomba.style["transform-origin"] = "bottom left";
+                        goomba.style.transition = "all .3s ease-out";
+                        goomba.style.transform = "scaleY(10%)";
+                        setTimeout(()=>{
+                             goomba.remove(); //remove goomba sprite from current level
+                        },600)
+                
                     }
                 }
             }
