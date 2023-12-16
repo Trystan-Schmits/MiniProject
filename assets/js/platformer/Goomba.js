@@ -27,6 +27,7 @@ class Goomba extends Character{
         this.x += this.speed;
 
         //do something else
+        super.update();
     }
 }
 
