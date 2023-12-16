@@ -24,6 +24,21 @@ image: /images/platformer/backgrounds/hills.png
       transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
       background-color: black;
     }
+
+    canvas {
+    animation: fadeInAnimation ease-in 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    }
+ 
+    @keyframes fadeInAnimation {
+      0% {
+          translate: -100% 0;
+      }
+      100% {
+          translate: 0 0;
+      }
+    }
 </style>
 
 <div id="mySidebar" class="sidenav">
