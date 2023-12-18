@@ -49,7 +49,6 @@ image: /images/platformer/backgrounds/hills.png
 
 <div id="mySidebar" class="sidenav">
   <a href="javascript:void(0)" id="toggleSettingsBar1" class="closebtn">&times;</a>
-    <input type="text"> </input>
 </div>
 
 <!-- Prepare DOM elements -->
