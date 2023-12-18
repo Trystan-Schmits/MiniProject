@@ -26,7 +26,7 @@ image: /images/platformer/backgrounds/hills.png
     }
 
     canvas {
-    animation: fadeInAnimation ease-in 3s;
+    animation: fadeInAnimation ease-in 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     }
