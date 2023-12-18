@@ -150,13 +150,13 @@ export class Player extends Character{
                 this.movement.left = false;
             }
             // Collision with the top of the player
-            //if (this.collisionData.touchPoints.this.ontop) {
-            //    this.gravityEnabled = false;
-            //    this.topOfPlatform = true; 
-            //}
-            if (this.collisionData.touchPoints.this.top) {
+            if (this.collisionData.touchPoints.other.ontop) {
                 this.gravityEnabled = false;
+                this.topOfPlatform = true; 
             }
+            //if (this.collisionData.touchPoints.this.top) {//checks if character mid is halfway above the scaffold mid 
+            //    this.gravityEnabled = false;
+            //}
             //if (this.collisionData.touchPoints.this.top) {
             //    this.gravityEnabled = false;
             //    
