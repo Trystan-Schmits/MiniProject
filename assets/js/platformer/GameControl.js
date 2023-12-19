@@ -21,6 +21,8 @@ const GameControl = {
         // Load GameLevel objects
         await newLevel.load();
         GameEnv.currentLevel = newLevel;
+        
+        document.getElementById("audioElement").play();
 
         // Trigger a resize to redraw canvas elements
         window.dispatchEvent(new Event('resize'));

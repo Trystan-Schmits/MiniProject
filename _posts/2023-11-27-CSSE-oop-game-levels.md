@@ -51,6 +51,7 @@ image: /images/platformer/backgrounds/hills.png
   <a href="javascript:void(0)" id="toggleSettingsBar1" class="closebtn">&times;</a>
 </div>
 
+
 <!-- Prepare DOM elements -->
 <!-- Wrap both the canvas and controls in a container div -->
 <div id="canvasContainer">
@@ -68,6 +69,9 @@ image: /images/platformer/backgrounds/hills.png
     <div id="gameOver" hidden>
         <button id="restartGame">Restart</button>
     </div>
+    <audio id="audioElement" loop hidden>
+      <source id="mp3Source">
+    </audio>
 </div>
 
 <!-- regular game -->
@@ -180,6 +184,9 @@ image: /images/platformer/backgrounds/hills.png
           brick: { src: "/images/platformer/obstacles/brick.png" }, //need to import image
           grass: { src: "/images/platformer/obstacles/grassScaffold.png" }, //need to import image
       },
+      audio: {
+          pink: { src: "/audio/platformer/pink.mp3" } //add link to audio element
+      }
     };
 
     // add File to assets, ensure valid site.baseurl
@@ -270,7 +277,7 @@ image: /images/platformer/backgrounds/hills.png
     //mr lopez in a classic mario level
     new GameLevel( {tag: "lopez", background: assets.backgrounds.clouds, background2: assets.backgrounds.hills, platform: assets.platforms.grass, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
     //level based on Trystan's game from last tri.
-     new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, enemy: assets.enemies.squid, callback: testerCallBack } );
+     new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, enemy: assets.enemies.squid, audio: assets.audio.pink, callback: testerCallBack } );
     //level with greenPlanet background
      new GameLevel( {tag: "green planet", background: assets.backgrounds.greenPlanet, platform: assets.platforms.grass, player: assets.players.monkey, enemy: assets.enemies.squid, callback: testerCallBack } );
     // Game Over screen

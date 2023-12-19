@@ -23,6 +23,7 @@ class GameLevel {
         this.enemyData = gameObject?.enemy;
         this.tubeImg = gameObject.tube?.file;
         this.scaffoldImg = gameObject.scaffold?.file;
+        this.Audio = gameObject.audio
         this.isComplete = gameObject?.callback; // function that determines if level is complete
         GameEnv.levels.push(this);
     }
@@ -52,6 +53,18 @@ class GameLevel {
         }
         if (this.scaffoldImg) {
             imagesToLoad.push(this.loadImage(this.scaffoldImg));
+        }
+        if (this.Audio) {
+            const Audio = document.getElementById("audioElement");
+            const AudioMp3 = document.getElementById("mp3Source");
+            AudioMp3.src = this.Audio.file;
+            Audio.load();
+        }
+        else{
+            const Audio = document.getElementById("audioElement");
+            const AudioMp3 = document.getElementById("mp3Source");
+            AudioMp3.src = "";
+            Audio.load();
         }
 
         try {
