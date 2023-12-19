@@ -185,7 +185,8 @@ image: /images/platformer/backgrounds/hills.png
           grass: { src: "/images/platformer/obstacles/grassScaffold.png" }, //need to import image
       },
       audio: {
-          pink: { src: "/audio/platformer/pink.mp3" } //add link to audio element
+          pink: { src: "/audio/platformer/pink.mp3" },
+          space: { src: "/audio/platformer/space.mp3" }
       }
     };
 
@@ -279,7 +280,7 @@ image: /images/platformer/backgrounds/hills.png
     //level based on Trystan's game from last tri.
      new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, enemy: assets.enemies.squid, audio: assets.audio.pink, callback: testerCallBack } );
     //level with greenPlanet background
-     new GameLevel( {tag: "green planet", background: assets.backgrounds.greenPlanet, platform: assets.platforms.grass, player: assets.players.monkey, enemy: assets.enemies.squid, callback: testerCallBack } );
+     new GameLevel( {tag: "green planet", background: assets.backgrounds.greenPlanet, platform: assets.platforms.grass, player: assets.players.monkey, enemy: assets.enemies.squid, audio: assets.audio.space, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );
 

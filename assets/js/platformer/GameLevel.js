@@ -58,13 +58,11 @@ class GameLevel {
             const Audio = document.getElementById("audioElement");
             const AudioMp3 = document.getElementById("mp3Source");
             AudioMp3.src = this.Audio.file;
-            Audio.load();
         }
         else{
             const Audio = document.getElementById("audioElement");
             const AudioMp3 = document.getElementById("mp3Source");
             AudioMp3.src = "";
-            Audio.load();
         }
 
         try {
