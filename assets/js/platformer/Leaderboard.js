@@ -1,4 +1,5 @@
 import LocalStorage from "./LocalStorage.js";
+import GameEnv from './GameEnv.js';
 
 export class Leaderboard extends LocalStorage { //create a class with access to local storage
     constructor(){
@@ -36,8 +37,8 @@ export class Leaderboard extends LocalStorage { //create a class with access to 
           const scoresArr = []
           for(let i = 0; i< playerScoresArray.length-1; i++){
             const temp = playerScoresArray[i].split(",")
-            scoresObj[temp[0]] = parseInt(temp[1])
-            scoresArr.push(parseInt(temp[1]))
+            scoresObj[temp[0]] = Number(temp[1])
+            scoresArr.push(Number(temp[1]))
           }
         
           var sortedScoresArr = scoresArr.toSorted((a,b)=>a-b); // sort values
@@ -110,12 +111,12 @@ export class Leaderboard extends LocalStorage { //create a class with access to 
             this.stopTimer();
             this.time=-1;
         }
-       this.time+=1; // Increment time (you can adjust this based on your game logic)
+       this.time+=1/GameEnv.frameRate.toFixed(2); // Increment time (you can adjust this based on your game logic)
 
        // Display the updated time in the span element with id 'timeScore'
        const timeScoreElement = document.getElementById('timeScore');
        if (timeScoreElement) {
-           timeScoreElement.textContent = String(this.time); // Update the displayed time
+           timeScoreElement.textContent = String(this.time.toFixed(2)); // Update the displayed time
        }
     }
 
@@ -123,7 +124,7 @@ export class Leaderboard extends LocalStorage { //create a class with access to 
     // Function to start the timer
      startTimer() {
        // Start the timer interval, updating the timer every second (1000 milliseconds)
-       this.timerInterval = setInterval(this.updateTimer.bind(this), 1000);
+       this.timerInterval = setInterval(this.updateTimer.bind(this), 1000/GameEnv.frameRate);
     }
 
     // Function to reset the timer
