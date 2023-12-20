@@ -8,7 +8,7 @@ image: /images/platformer/backgrounds/hills.png
 ---
 
 <style>
-    #gameBegin, #controls, #gameOver, #settings {
+    #gameBegin, #controls, #gameOver, #settings, #leaderboard {
       position: relative;
         z-index: 2; /*Ensure the controls are on top*/
     }
@@ -25,6 +25,16 @@ image: /images/platformer/backgrounds/hills.png
       background-color: black;
     }
 
+    .timer{
+      position: fixed;
+      height: 10%; /* 100% Full-height */
+      width: 20%; /* 0 width - change this with JavaScript */
+      z-index: 3; /* Stay on top */
+      top: 10%; /* Stay at the top */
+      left: 70%;
+      background-color: white;
+      color: black;
+    }
     canvas {
     animation: fadeInAnimation ease-in 1s;
     animation-iteration-count: 1;
@@ -51,6 +61,11 @@ image: /images/platformer/backgrounds/hills.png
   <a href="javascript:void(0)" id="toggleSettingsBar1" class="closebtn">&times;</a>
 </div>
 
+<div id="score" class="timer">
+    Time: <span id="timeScore">[start timer]</span>
+</div>
+
+
 
 <!-- Prepare DOM elements -->
 <!-- Wrap both the canvas and controls in a container div -->
@@ -66,6 +81,10 @@ image: /images/platformer/backgrounds/hills.png
         <!-- Background controls -->
         <button id="toggleSettingsBar">Settings</button>
     </div>
+    <div id="leaderboard"> <!-- Controls -->
+        <!-- Background controls -->
+        <button id="leaderboardButton">Leaderboard</button>
+    </div>
     <div id="gameOver" hidden>
         <button id="restartGame">Restart</button>
     </div>
@@ -80,12 +99,16 @@ image: /images/platformer/backgrounds/hills.png
     import GameEnv from '{{site.baseurl}}/assets/js/platformer/GameEnv.js';
     import GameLevel from '{{site.baseurl}}/assets/js/platformer/GameLevel.js';
     import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
+    import Leaderboard from '{{site.baseurl}}/assets/js/platformer/Leaderboard.js';
 
 
     /*  ==========================================
      *  ======= Data Definitions =================
      *  ==========================================
     */
+
+    var leaderboardObject = new Leaderboard();
+    leaderboardObject.initialize();
 
     // Define assets for the game
     var assets = {
@@ -233,7 +256,9 @@ image: /images/platformer/backgrounds/hills.png
       // Use waitForRestart to wait for the restart button click
       await waitForButton('startGame');
       id.hidden = true;
-      
+
+      leaderboardObject.startTimer.bind(leaderboardObject)();
+
       return true;
     }
 
@@ -248,13 +273,32 @@ image: /images/platformer/backgrounds/hills.png
     async function gameOverCallBack() {
       const id = document.getElementById("gameOver");
       id.hidden = false;
+
+      leaderboardObject.stopTimer();
       
+      // Check if the game over screen has been shown before
+      if (!leaderboardObject["gameOverScreenShown"]) {
+        const playerScore = document.getElementById("timeScore").innerHTML;
+        const playerName = prompt(`You scored ${playerScore}! What is your name?`);
+        let temp = leaderboardObject["leaderboard"];
+        temp += playerName + "," + playerScore.toString() + ";";
+        leaderboardObject["leaderboard"] = temp;
+        // Set a flag in local storage to indicate that the game over screen has been shown
+        leaderboardObject["gameOverScreenShown"] = true;
+
+        leaderboardObject.saveAll();
+      }
+
       // Use waitForRestart to wait for the restart button click
       await waitForButton('restartGame');
       id.hidden = true;
       
       // Change currentLevel to start/restart value of null
       GameEnv.currentLevel = null;
+
+      leaderboardObject["gameOverScreenShown"] = false;
+      leaderboardObject.saveAll();
+      leaderboardObject.resetTimer();
 
       return true;
     }
@@ -281,7 +325,7 @@ image: /images/platformer/backgrounds/hills.png
     //level based on Trystan's game from last tri.
      new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, enemy: assets.enemies.squid, audio: assets.audio.pink, callback: testerCallBack } );
     //level with greenPlanet background
-     new GameLevel( {tag: "green planet", background: assets.backgrounds.greenPlanet, platform: assets.platforms.grass, player: assets.players.monkey, enemy: assets.enemies.squid, audio: assets.audio.space, callback: testerCallBack } );
+     //new GameLevel( {tag: "green planet", background: assets.backgrounds.greenPlanet, platform: assets.platforms.grass, player: assets.players.monkey, enemy: assets.enemies.squid, audio: assets.audio.space, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );
 
@@ -293,6 +337,8 @@ image: /images/platformer/backgrounds/hills.png
     // create listeners
     toggleCanvasEffect.addEventListener('click', GameEnv.toggleInvert);
     window.addEventListener('resize', GameEnv.resize);
+    // Event listener for the start game button click
+    document.getElementById('leaderboardButton').addEventListener('click', leaderboardObject.showLeaderboard.bind(leaderboardObject));
 
     // start game
     GameControl.gameLoop();
