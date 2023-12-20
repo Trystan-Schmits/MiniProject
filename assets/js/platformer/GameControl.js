@@ -23,7 +23,6 @@ const GameControl = {
         GameEnv.currentLevel = newLevel;
         
         document.getElementById("audioElement").play();
-        console.log("starting",document.getElementById("mp3Source").src)
 
         // Trigger a resize to redraw canvas elements
         window.dispatchEvent(new Event('resize'));
