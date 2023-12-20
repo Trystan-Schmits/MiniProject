@@ -19,6 +19,7 @@ export class Player extends Character{
         this.movement = {left: true, right: true, down: true};
         this.isIdle = true;
         this.stashKey = "d"; // initial key
+        this.inDash = false;
 
         // Store a reference to the event listener function
         this.keydownListener = this.handleKeyDown.bind(this);
@@ -112,6 +113,14 @@ export class Player extends Character{
         }
         if (this.isGravityAnimation("w")) {
             if (this.movement.down) this.y -= (this.bottom * .4);  // jump 11% higher than bottom
+        } 
+        if (this.isAnimation("s")) {
+            if(!this.inDash){
+                this.x += GameEnv.innerWidth*.1 * (this.stashKey=="d"?1:-1);
+                GameEnv.backgroundSpeed = GameEnv.innerWidth*.1 * (this.stashKey=="d"?1:-1);
+                this.inDash = true;
+                setTimeout(()=>{this.inDash = false},1000);
+            }
         } 
 
         // Perform super update actions
@@ -217,6 +226,9 @@ export class Player extends Character{
                 // player active
                 this.isIdle = false;
             }
+            if (event.key === "s"){
+                this.canvas.style.filter = "invert(1)";
+            }
         }
     }
 
@@ -226,6 +238,9 @@ export class Player extends Character{
             const key = event.key;
             if (event.key in this.pressedKeys) {
                 delete this.pressedKeys[event.key];
+            }
+            if (event.key === "s"){
+                this.canvas.style.filter = "invert(0)";
             }
             this.setAnimation(key);  
             // player idle
