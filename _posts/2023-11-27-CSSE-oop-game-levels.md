@@ -201,7 +201,11 @@ image: /images/platformer/backgrounds/hills.png
           width: 190,
           height: 175,
           animation: {row: 0, frames: 3},
-        }
+        },
+        //mushroom: {// fake enemy
+        //  type: 3, 
+        //  //stuff for enemy
+        //}
       },
       scaffolds: {
           brick: { src: "/images/platformer/obstacles/brick.png" }, //need to import image
