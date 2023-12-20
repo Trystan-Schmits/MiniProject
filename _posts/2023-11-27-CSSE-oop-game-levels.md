@@ -186,7 +186,8 @@ image: /images/platformer/backgrounds/hills.png
       },
       audio: {
           pink: { src: "/audio/platformer/pink.mp3" },
-          space: { src: "/audio/platformer/space.mp3" }
+          space: { src: "/audio/platformer/space.mp3" },
+          honor: { src: "/audio/platformer/honor.mp3" }
       }
     };
 
@@ -276,7 +277,7 @@ image: /images/platformer/backgrounds/hills.png
     //monkey in an alien world
     new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, enemy: assets.enemies.goomba, callback: testerCallBack } );
     //mr lopez in a classic mario level
-    new GameLevel( {tag: "lopez", background: assets.backgrounds.clouds, background2: assets.backgrounds.hills, platform: assets.platforms.grass, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, callback: testerCallBack } );
+    new GameLevel( {tag: "lopez", background: assets.backgrounds.clouds, background2: assets.backgrounds.hills, platform: assets.platforms.grass, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, audio: assets.audio.honor, callback: testerCallBack } );
     //level based on Trystan's game from last tri.
      new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, enemy: assets.enemies.squid, audio: assets.audio.pink, callback: testerCallBack } );
     //level with greenPlanet background
