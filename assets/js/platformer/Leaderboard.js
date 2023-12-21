@@ -113,7 +113,6 @@ export class Leaderboard extends LocalStorage { //create a class with access to 
       const id = document.getElementById("gameOver");
       if (id.hidden == false) {
           this.stopTimer();
-          this.time=-1;
       }
       this.time+=1/GameEnv.frameRate.toFixed(2); // Increment time (you can adjust this based on your game logic)
 
