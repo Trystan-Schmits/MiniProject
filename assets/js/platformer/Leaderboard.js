@@ -55,19 +55,22 @@ export class Leaderboard extends LocalStorage { //create a class with access to 
 
           var table = document.createElement("table");
           table.style.margin = "auto";
-          var tableHead = document.createElement("tr");
+          var tableHead = document.createElement("tHead");
+          var tableHeadRow = document.createElement("tr");
+          tableHead.append(tableHeadRow);
           var tableTitle1 = document.createElement("th");
           tableTitle1.innerText = "Rank";
-          tableHead.append(tableTitle1);
+          tableHeadRow.append(tableTitle1);
           var tableTitle2 = document.createElement("th");
           tableTitle2.innerText = "Name";
-          tableHead.append(tableTitle2);
+          tableHeadRow.append(tableTitle2);
           var tableTitle3 = document.createElement("th");
           tableTitle3.innerText = "Time";
-          tableHead.append(tableTitle3);
+          tableHeadRow.append(tableTitle3);
           table.append(tableHead);
 
-          let rankScore = 1;
+          var tableBody = document.createElement("tBody");
+          table.append(tableBody);
           for (let i =0; i<finalScoresArr.length; i++) {
             var row = document.createElement("tr");
             var rank = document.createElement("td");
@@ -82,9 +85,24 @@ export class Leaderboard extends LocalStorage { //create a class with access to 
             row.append(rank);
             row.append(name);
             row.append(score);
-            table.append(row);  
+            tableBody.append(row);  
           }
           leaderboardSection.appendChild(table); //apend table
+
+          const tBody = table.tBodies[0]; //table sorting when clicking on header
+          const rows = Array.from(tBody.rows);
+          const headerCells = table.tHead.rows[0].cells;
+          for (const th of headerCells) {
+            const cellIndex = th.cellIndex;
+            th.addEventListener("click", () => {
+              rows.sort((tr1, tr2) => {
+                const tr1Text = tr1.cells[cellIndex].textContent;
+                const tr2Text = tr2.cells[cellIndex].textContent;
+                return tr1Text.localeCompare(tr2Text, undefined, { numeric: true, sensitivity: "base" });
+              });
+              tBody.append(...rows);
+            });
+          }
 
           var clearButton = document.createElement("button"); //button for clearing data
           clearButton.style.margin = "auto";
