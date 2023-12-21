@@ -31,35 +31,23 @@ export class Leaderboard extends LocalStorage { //create a class with access to 
           document.querySelector(".page-content").appendChild(leaderboardSection)
           // document.body.appendChild(leaderboardSection);
         
+          var playerScoresArray;
           const playerScores = this[this.keys.leaderboard];
-          const playerScoresArray = playerScores.split(";")
-          const scoresObj = {}
-          const scoresArr = []
-          for(let i = 0; i< playerScoresArray.length-1; i++){
-            const temp = playerScoresArray[i].split(",")
-            scoresObj[temp[0]] = Number(temp[1])
-            scoresArr.push(Number(temp[1]))
-          }
-        
-          var sortedScoresArr = scoresArr.toSorted((a,b)=>a-b); // sort values
-        
-          const finalScoresArr = [];
-          for (let i = 0; i<sortedScoresArr.length; i++) {
-            for (const [key, value] of Object.entries(scoresObj)) {
-              if (sortedScoresArr[i] ==value) {
-                finalScoresArr.push(key + "," + value);
-                break;
-              }
-            }
+          if (playerScores == ""){
+            console.log("no data"); 
+            playerScoresArray=[];
+          } else{
+          playerScoresArray = playerScores.slice(0,-1).split(";");
           }
 
-          var table = document.createElement("table");
+          var table = document.createElement("table"); // create table
           table.style.margin = "auto";
-          var tableHead = document.createElement("tHead");
+
+          var tableHead = document.createElement("tHead"); //create table header
           var tableHeadRow = document.createElement("tr");
           tableHead.append(tableHeadRow);
           var tableTitle1 = document.createElement("th");
-          tableTitle1.innerText = "Rank";
+          tableTitle1.innerText = "Run";
           tableHeadRow.append(tableTitle1);
           var tableTitle2 = document.createElement("th");
           tableTitle2.innerText = "Name";
@@ -69,19 +57,19 @@ export class Leaderboard extends LocalStorage { //create a class with access to 
           tableHeadRow.append(tableTitle3);
           table.append(tableHead);
 
-          var tableBody = document.createElement("tBody");
+          var tableBody = document.createElement("tBody"); //create table body
           table.append(tableBody);
-          for (let i =0; i<finalScoresArr.length; i++) {
+          for (let i =0; i<playerScoresArray.length; i++) {
             var row = document.createElement("tr");
             var rank = document.createElement("td");
             rank.id = String(i)+"r";
             rank.innerText = String(i+1);
             var name = document.createElement("td");
             name.id = String(i)+"n";
-            name.innerText = String(finalScoresArr[i].split(",")[0]);
+            name.innerText = String(playerScoresArray[i].split(",")[0]);
             var score = document.createElement("td");
             score.id = String(i)+"s";
-            score.innerText = String(finalScoresArr[i].split(",")[1]);
+            score.innerText = String(playerScoresArray[i].split(",")[1]);
             row.append(rank);
             row.append(name);
             row.append(score);
