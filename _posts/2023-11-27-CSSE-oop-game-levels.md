@@ -288,6 +288,7 @@ image: /images/platformer/backgrounds/hills.png
       if (!leaderboardObject["gameOverScreenShown"]) {
         const playerScore = document.getElementById("timeScore").innerHTML;
         const playerName = prompt(`You scored ${playerScore}! What is your name?`);
+        if(playerName != null){
         let temp = leaderboardObject["leaderboard"];
         temp += playerName + "," + playerScore.toString() + ";";
         leaderboardObject["leaderboard"] = temp;
@@ -295,6 +296,7 @@ image: /images/platformer/backgrounds/hills.png
         leaderboardObject["gameOverScreenShown"] = true;
 
         leaderboardObject.saveAll();
+        }
       }
 
       // Use waitForRestart to wait for the restart button click
