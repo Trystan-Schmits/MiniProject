@@ -3,9 +3,9 @@ import GameObject from './GameObject.js';
 import Character from './Character.js';
 
 class Mushroom extends Character{
-    constructor(canvas, image, speedRatio, enemyData){
-        super(canvas, image, speedRatio, enemyData.width, 
-            enemyData.height)
+    constructor(canvas, image, speedRatio, powerData){
+        super(canvas, image, speedRatio, powerData.width, 
+            powerData.height)
 
         this.x = GameEnv.innerWidth/4;
         this.scaledCharacterHeightRatio = (1/20);

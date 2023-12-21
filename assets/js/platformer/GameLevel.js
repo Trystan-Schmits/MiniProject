@@ -8,6 +8,7 @@ import Goomba from './Goomba.js'
 import Scaffold from './Scaffold.js';
 import Player2 from './Player2.js';
 import Squid from './Squid.js';
+import Mushroom from './Mushroom.js';
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
@@ -23,7 +24,9 @@ class GameLevel {
         this.enemyData = gameObject?.enemy;
         this.tubeImg = gameObject.tube?.file;
         this.scaffoldImg = gameObject.scaffold?.file;
-        this.Audio = gameObject.audio
+        this.Audio = gameObject.audio;
+        this.powerImg =  gameObject.power?.file;
+        this.powerData =  gameObject?.power;
         this.isComplete = gameObject?.callback; // function that determines if level is complete
         GameEnv.levels.push(this);
     }
@@ -45,11 +48,14 @@ class GameLevel {
         if (this.playerImg) {
             imagesToLoad.push(this.loadImage(this.playerImg));
         }
-        if (this.tubeImg) {
-            imagesToLoad.push(this.loadImage(this.tubeImg));
-        }
         if (this.enemyImg) {
             imagesToLoad.push(this.loadImage(this.enemyImg));
+        }
+        if (this.powerImg) {
+            imagesToLoad.push(this.loadImage(this.powerImg));
+        }
+        if (this.tubeImg) {
+            imagesToLoad.push(this.loadImage(this.tubeImg));
         }
         if (this.scaffoldImg) {
             imagesToLoad.push(this.loadImage(this.scaffoldImg));
@@ -127,6 +133,18 @@ class GameLevel {
                 }else{
                     enemyCanvas.id = "enemy2";
                     new Squid(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
+                }
+                i++;
+            }
+
+            // Prepare HTML with Enenemy Canvas (if enemyImg is defined)
+            if (this.powerImg) {
+                const powerCanvas = document.createElement("canvas");
+                document.querySelector("#canvasContainer").appendChild(powerCanvas);
+                const powerSpeedRatio = 0.7;
+                if (this.powerData.type == 0){
+                    powerCanvas.id = "power";
+                    new Mushroom(powerCanvas, loadedImages[i], powerSpeedRatio, this.powerData);
                 }
                 i++;
             }

@@ -202,10 +202,6 @@ image: /images/platformer/backgrounds/hills.png
           height: 175,
           animation: {row: 0, frames: 3},
         },
-        //mushroom: {// fake enemy
-        //  type: 3, 
-        //  //stuff for enemy
-        //}
       },
       scaffolds: {
           brick: { src: "/images/platformer/obstacles/brick.png" }, //need to import image
@@ -215,6 +211,14 @@ image: /images/platformer/backgrounds/hills.png
           pink: { src: "/audio/platformer/pink.mp3" },
           space: { src: "/audio/platformer/space.mp3" },
           honor: { src: "/audio/platformer/honor.mp3" }
+      },
+      powers: {
+        mushroom: {// fake enemy
+          src: "/images/platformer/sprites/mushroom.png",
+          type: 0,
+          width: 4000,
+          height: 4000,
+        }
       }
     };
 
@@ -321,11 +325,11 @@ image: /images/platformer/backgrounds/hills.png
     // Game screens
 
     //geometry dash background with mario character
-    new GameLevel( {tag: "geometry", background: assets.backgrounds.geometry, platform: assets.platforms.grass, player: assets.players.mario, tube: assets.obstacles.tube, scaffold: assets.scaffolds.brick, callback: testerCallBack } );
+    new GameLevel( {tag: "geometry", background: assets.backgrounds.geometry, platform: assets.platforms.grass, player: assets.players.mario, tube: assets.obstacles.tube, scaffold: assets.scaffolds.brick, power: assets.powers.mushroom, callback: testerCallBack } );
     //monkey in an alien world
     new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, enemy: assets.enemies.goomba, callback: testerCallBack } );
     //mr lopez in a classic mario level
-    new GameLevel( {tag: "lopez", background: assets.backgrounds.clouds, background2: assets.backgrounds.hills, platform: assets.platforms.grass, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, audio: assets.audio.honor, callback: testerCallBack } );
+    new GameLevel( {tag: "lopez", background: assets.backgrounds.clouds, background2: assets.backgrounds.hills, platform: assets.platforms.grass, scaffold: assets.scaffolds.grass, player: assets.players.lopez, enemy: assets.enemies.goomba, audio: assets.audio.honor, power:assets.powers.mushroom, callback: testerCallBack } );
     //level based on Trystan's game from last tri.
      new GameLevel( {tag: "the move", background: assets.backgrounds.theMove, platform: assets.platforms.redCarpet, player: assets.players.jaden, enemy: assets.enemies.squid, audio: assets.audio.pink, callback: testerCallBack } );
     //level with greenPlanet background

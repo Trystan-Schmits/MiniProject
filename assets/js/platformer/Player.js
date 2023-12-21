@@ -210,6 +210,18 @@ export class Player extends Character{
             }
         }
 
+        if (this.collisionData.touchPoints.other.id === "power") {
+            this.scaledCharacterHeightRatio = 2/10;
+            this.size();
+            for(let i = 0; i<GameEnv.gameObjects.length;i++){//loop through current gameObjects
+                if(GameEnv.gameObjects[i].isMushroom){ //look for object with (isGoomba==true) tag
+                    //get goomba canvas
+                    GameEnv.gameObjects[i].canvas.remove();
+                    GameEnv.gameObjects.splice(i,1);
+                }
+            }
+        }
+
         if (this.collisionData.touchPoints.other.id === "enemy2") {
             //reload current level (death)
             GameControl.transitionToLevel(GameEnv.levels[GameEnv.levels.indexOf(GameEnv.currentLevel)]);
