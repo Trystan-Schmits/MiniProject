@@ -54,6 +54,31 @@ class Character extends GameObject {
         this.frameY = frameY;
     }
 
+
+    // override hehe
+    jsonifyElement() {
+        var element = this.canvas;
+        if (element && element.id) {
+            return {
+                ...super.jsonifyElement(),
+                x: this.x / GameEnv.innerWidth,
+                y: (this.y - GameEnv.top) / (this.bottom - GameEnv.top),
+                frameY: this.frameY
+            };
+        }
+    }
+
+    updateInfo(json) {
+        super.updateInfo(json)
+        var element = this.canvas;
+        if (json.id === element.id) {
+            this.x = json.x * GameEnv.innerWidth;
+            this.y = (json.y * (this.bottom - GameEnv.top)) + GameEnv.top;
+            this.frameY = json.frameY
+        }
+        return json.id === element.id
+    }
+
     /* Draw character object
      * Canvas and Context
     */

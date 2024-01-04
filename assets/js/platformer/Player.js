@@ -4,7 +4,7 @@ import GameControl from './GameControl.js'
 
 export class Player extends Character{
     // constructors sets up Character object 
-    constructor(canvas, image, speedRatio, playerData){
+    constructor(canvas, image, speedRatio, playerData,canBeControlled){
         super(canvas, 
             image, 
             speedRatio,
@@ -21,6 +21,7 @@ export class Player extends Character{
         this.stashKey = "d"; // initial key
         this.inDash = false;
 
+        if(canBeControlled){
         // Store a reference to the event listener function
         this.keydownListener = this.handleKeyDown.bind(this);
         this.keyupListener = this.handleKeyUp.bind(this);
@@ -28,7 +29,8 @@ export class Player extends Character{
         // Add event listeners
         document.addEventListener('keydown', this.keydownListener);
         document.addEventListener('keyup', this.keyupListener);
-
+        this.shouldBeSynced = true;
+        }
         GameEnv.player = this;
     }
 
@@ -125,6 +127,7 @@ export class Player extends Character{
 
         // Perform super update actions
         super.update();
+        this.serialize();
     }
 
     // Player action on collisions

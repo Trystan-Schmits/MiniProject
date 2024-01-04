@@ -110,14 +110,14 @@ class GameLevel {
             // Prepare HTML with Player Canvas (if playerImg is defined)
             if (this.playerImg) {
                 const playerCanvas = document.createElement("canvas");
-                playerCanvas.id = "character";
+                playerCanvas.id = "character" + GameEnv.id;
                 document.querySelector("#canvasContainer").appendChild(playerCanvas);
                 const playerSpeedRatio = 0.7;
                 if (this.playerData.type == 0){
-                    new Player(playerCanvas, loadedImages[i], playerSpeedRatio, this.playerData);
+                    new Player(playerCanvas, loadedImages[i], playerSpeedRatio, this.playerData,true);
                 }
                 else{
-                    new Player2(playerCanvas, loadedImages[i], playerSpeedRatio, this.playerData);
+                    new Player2(playerCanvas, loadedImages[i], playerSpeedRatio, this.playerData,true);
                 }
                 i++;
             }
@@ -172,6 +172,31 @@ class GameLevel {
             console.error('Failed to load one or more images:', error);
         }
 
+    }
+
+    async addCharacter(id) {
+        const loadedImage = await this.loadImage(this.playerImg);
+
+        // search for player (prevent dupliactes after the `await`)
+        for (var gameObj of GameEnv.gameObjects) {
+            if (gameObj.canvas.id === "character" + id) {
+                return gameObj
+            }
+        }
+
+        // Prepare HTML with Player Canvas (if playerImg is defined)
+        if (this.playerImg) {
+            const playerCanvas = document.createElement("canvas");
+            playerCanvas.id = id;
+            document.querySelector("#canvasContainer").appendChild(playerCanvas);
+            const playerSpeedRatio = 0.7;
+            if (this.playerData.type == 0){
+                return new Player(playerCanvas, loadedImage, playerSpeedRatio, this.playerData,false);
+            }
+            else{
+                return new Player2(playerCanvas, loadedImage, playerSpeedRatio, this.playerData,false);
+            }
+        }
     }
 
     // Create a function to load an image and return a Promise

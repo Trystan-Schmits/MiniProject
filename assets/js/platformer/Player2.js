@@ -4,7 +4,7 @@ import GameControl from './GameControl.js'
 
 export class Player2 extends Character{ //for lopez code
     // constructors sets up Character object 
-    constructor(canvas, image, speedRatio, playerData,speedLimit){
+    constructor(canvas, image, speedRatio, playerData,speedLimit,canBeControlled){
         super(canvas, 
             image, 
             speedRatio,
@@ -27,14 +27,16 @@ export class Player2 extends Character{ //for lopez code
         this.isIdle = true;
         this.stashKey = "d"; // initial key
 
-        // Store a reference to the event listener function
-        this.keydownListener = this.handleKeyDown.bind(this);
-        this.keyupListener = this.handleKeyUp.bind(this);
-
-        // Add event listeners
-        document.addEventListener('keydown', this.keydownListener);
-        document.addEventListener('keyup', this.keyupListener);
-
+        if(canBeControlled){
+            // Store a reference to the event listener function
+            this.keydownListener = this.handleKeyDown.bind(this);
+            this.keyupListener = this.handleKeyUp.bind(this);
+    
+            // Add event listeners
+            document.addEventListener('keydown', this.keydownListener);
+            document.addEventListener('keyup', this.keyupListener);
+            this.shouldBeSynced = true;
+        }
         GameEnv.player = this;
     }
 
@@ -177,6 +179,7 @@ export class Player2 extends Character{ //for lopez code
 
         // Perform super update actions
         super.update();
+        this.serialize();
     }
 
     // Player action on collisions

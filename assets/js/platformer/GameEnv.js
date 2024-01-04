@@ -1,3 +1,5 @@
+import { io } from "https://cdn.socket.io/4.7.2/socket.io.esm.min.js";
+
 export class GameEnv {
     // game managed object
     static currentLevel = null;
@@ -26,6 +28,14 @@ export class GameEnv {
 
     //background speeds
     static backgroundSpeed = 0;
+
+    //socket io
+    // socket.io object
+    static socket = io(`ws://${window.location.host.split(":")[0]}:8080`);
+    static id = '';
+    static {
+        this.socket.on("id", id => this.id = id)
+    }
 
     // Make the constructor private to prevent instantiation
     constructor() {

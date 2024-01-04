@@ -19,6 +19,7 @@ class GameObject {
         this.invert = true;
         this.collisionData = {};
         this.jsonifiedElement = '';
+        this.shouldBeSynced = false;
         // Add this object to the game object array so collision can be detected
         // among other things
         GameEnv.gameObjects.push(this); 
@@ -33,17 +34,20 @@ class GameObject {
     logElement() {
         var jsonifiedElement = this.stringifyElement();
         if (jsonifiedElement !== this.jsonifiedElement) {
-            //console.log(jsonifiedElement);
+            var obj = this.jsonifyElement()
             this.jsonifiedElement = jsonifiedElement;
+
+            // send object
+            if (this.shouldBeSynced && !GameEnv.inTransition) {
+                GameEnv.socket.emit("update", obj)
+            }
         }
     }
 
-    // strigify Character key data
-    stringifyElement() {
+    jsonifyElement() {
         var element = this.canvas;
         if (element && element.id) {
-            // Convert the relevant properties of the element to a string for comparison
-            return JSON.stringify({
+            return {
                 id: element.id,
                 width: element.width,
                 height: element.height,
@@ -52,9 +56,28 @@ class GameObject {
                     left: element.style.left,
                     top: element.style.top
                 },
-                filter: element.style.filter
-            });
+                filter: element.style.filter,
+                tag: GameEnv.currentLevel.tag
+            };
         }
+    }
+
+    // strigify Character key data
+    stringifyElement() {
+        var obj = this.jsonifyElement()
+        if (obj) {
+            return JSON.stringify(obj)
+        }
+    }
+
+    updateInfo(json) {
+        var element = this.canvas;
+        if (json.id === element.id) {
+            this.canvas.width = json.width;
+            this.canvas.height = json.height;
+            this.canvas.style.filter = json.filter;
+        }
+        return json.id === element.id
     }
 
     // X position getter and setter
