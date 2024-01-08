@@ -8,7 +8,7 @@ io.on('connection',(socket) => {
     const id = uuidv4();
     socket.emit("id",id);
     
-    console.log("a user connected, given id :"+id);
+    console.log("a user connected, given id: "+id);
 
     socket.on('message',(message)=>{
         io.emit('message',message);
@@ -19,7 +19,7 @@ io.on('connection',(socket) => {
     })
     
     socket.on("disconnect", () => {
-        console.log("a user disconnected, with id:"+id)
+        console.log("a user disconnected, with id: "+id)
         io.emit("disconnection", id);
     })
 });
