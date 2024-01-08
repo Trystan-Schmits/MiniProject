@@ -363,42 +363,70 @@ image: /images/platformer/backgrounds/hills.png
     toggle = !toggle;
     document.getElementById("mySidebar").style.width = toggle?"250px":"0px";
   }
-  document.getElementById("toggleSettingsBar").addEventListener("click",toggleWidth);
-  document.getElementById("toggleSettingsBar1").addEventListener("click",toggleWidth);
+  document.getElementById("toggleNavigationBar").addEventListener("click",toggleWidth);
+  document.getElementById("toggleNavigationBar1").addEventListener("click",toggleWidth);
+  //generate table
+  import GameEnv from '{{site.baseurl}}/assets/js/platformer/GameEnv.js';
+  import GameLevel from '{{site.baseurl}}/assets/js/platformer/GameLevel.js';
+  import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
+  var levels = GameEnv.levels;
+  var assets = {
+    obstacles: {
+      tube: { src: "/images/platformer/obstacles/tube.png" },
+    },
+    platforms: {
+      grass: { src: "/images/platformer/platforms/pigfarm.png"},
+      alien: { src: "/images/platformer/platforms/alien.png" }
+    },
+    backgrounds: {
+      start: { src: "/images/platformer/backgrounds/Joke.jpg" },
+      hills: { src: "/images/platformer/backgrounds/GD_Background.png" },
+      planet: { src: "/images/platformer/backgrounds/planet.jpg" },
+      castles: { src: "/images/platformer/backgrounds/castles.png" },
+      end: { src: "/images/platformer/backgrounds/game_over.png" }
+    },
+    players: {
+      mario: {
+        src: "/images/platformer/sprites/mario.png",
+        width: 256,
+        height: 256,
+        w: { row: 10, frames: 15 },
+        wa: { row: 11, frames: 15 },
+        wd: { row: 10, frames: 15 },
+        a: { row: 3, frames: 7, idleFrame: { column: 7, frames: 0 } },
+        s: { row: null, frames: null},
+        d: { row: 2, frames: 7, idleFrame: { column: 7, frames: 0 } }
+      },
+      monkey: {
+        src: "/images/platformer/sprites/monkey.png",
+        width: 40,
+        height: 40,
+        w: { row: 9, frames: 15 },
+        wa: { row: 9, frames: 15 },
+        wd: { row: 9, frames: 15 },
+        a: { row: 1, frames: 15, idleFrame: { column: 7, frames: 0 } },
+        s: { row: 12, frames: 15 },
+        d: { row: 0, frames: 15, idleFrame: { column: 7, frames: 0 } }
+      }
+    }
+  };
 
-  // Generate table
-  import Controller from '{{site.baseurl}}/assets/js/platformer/Controller.js';
-  
-  var myController = new Controller();
-  myController.initialize();
+    var placeAfterElement = document.getElementById("navigationPlaceAfter");
 
-  var table = myController.levelTable;
-  document.getElementById("mySidebar").append(table);
-  
-
-  var div = myController.speedDiv;
-  document.getElementById("mySidebar").append(div);
-
-
-  var div2 = myController.gravityDiv;
-  document.getElementById("mySidebar").append(div2);
-    //for(let i=levels.length-1;i>-1;i-=1){
-    //  var row = document.createElement("tr");
-    //  var c1 = document.createElement("td");
-    //  var c2 = document.createElement("td");
-    //  c1.innerText = levels[i].tag;
-    //  if(levels[i].playerData){ //if player exists
-    //      var charImage = new Image();
-    //      charImage.src = "{{site.baseurl}}/"+levels[i].playerData.src;
-    //      //var array = levels[i].playerData.src.split("/");
-    //      //c2.innerText = array[array.length-1];
-    //      c2.append(charImage);
-    //  }
-    //  else{
-    //    c2.innerText = "none";
-    //  }
-    //  row.append(c1);
-    //  row.append(c2);
-    //  placeAfterElement.insertAdjacentElement("afterend",row);
-    //}
+    for(let i=levels.length-1;i>-1;i-=1){
+      var row = document.createElement("tr");
+      var c1 = document.createElement("td");
+      var c2 = document.createElement("td");
+      c1.innerText = levels[i].tag;
+      if(levels[i].playerData){ //if player exists
+        var array = levels[i].playerData.src.split("/");
+        c2.innerText = array[array.length-1];
+      }
+      else{
+        c2.innerText = "none";
+      }
+      row.append(c1);
+      row.append(c2);
+      placeAfterElement.insertAdjacentElement("afterend",row);
+    }
 </script>
