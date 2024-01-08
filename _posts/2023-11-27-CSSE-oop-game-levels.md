@@ -363,8 +363,8 @@ image: /images/platformer/backgrounds/hills.png
     toggle = !toggle;
     document.getElementById("mySidebar").style.width = toggle?"250px":"0px";
   }
-  document.getElementById("toggleNavigationBar").addEventListener("click",toggleWidth);
-  document.getElementById("toggleNavigationBar1").addEventListener("click",toggleWidth);
+  document.getElementById("toggleSettingsBar").addEventListener("click",toggleWidth);
+  document.getElementById("toggleSettingsBar1").addEventListener("click",toggleWidth);
   //generate table
   import GameEnv from '{{site.baseurl}}/assets/js/platformer/GameEnv.js';
   import GameLevel from '{{site.baseurl}}/assets/js/platformer/GameLevel.js';
